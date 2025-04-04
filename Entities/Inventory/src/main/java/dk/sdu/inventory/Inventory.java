@@ -1,5 +1,7 @@
 package dk.sdu.inventory;
 
+import dk.sdu.item.Item;
+
 import java.util.ArrayList;
 
 public class Inventory {
