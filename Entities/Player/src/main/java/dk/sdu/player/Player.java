@@ -1,5 +1,4 @@
 package dk.sdu.player;
-
 import dk.sdu.entity.Entity;
 
 public class Player extends Entity {
