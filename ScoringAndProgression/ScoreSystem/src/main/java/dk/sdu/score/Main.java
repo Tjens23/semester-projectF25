@@ -1,4 +1,4 @@
-package dk.sdu;
+package dk.sdu.score;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 

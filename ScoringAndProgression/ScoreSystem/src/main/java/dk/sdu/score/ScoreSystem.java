@@ -1,4 +1,4 @@
-package dk.sdu;
+package dk.sdu.score;
 public class ScoreSystem {
     private int score;
 

@@ -1,4 +1,4 @@
-package dk.sdu;
+package dk.sdu.leaderboard;
 
 import java.sql.*;
 import java.util.ArrayList;
