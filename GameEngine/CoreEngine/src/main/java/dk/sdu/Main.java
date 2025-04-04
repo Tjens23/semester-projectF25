@@ -10,7 +10,7 @@ import dk.sdu.data.GameData;
 import dk.sdu.data.GameKeys;
 import dk.sdu.services.IGamePlugin;
 
-mport java.util.Collection;
+import java.util.Collection;
 import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,12 +19,11 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.swing.text.html.parser.Entity;
-import org.w3c.dom.Text;
 
 public class Main extends Application implements IGamePlugin {
 
@@ -109,7 +108,7 @@ public class Main extends Application implements IGamePlugin {
       
         render();
         window.setScene(scene);
-        window.setTitle("ZOMBIE DESTROYER");
+        window.setTitle("ZOMBIE DESTROYER (Unofficial)");
         window.show();
     }
 
@@ -117,8 +116,8 @@ public class Main extends Application implements IGamePlugin {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                update();
-                draw();
+                //update();
+                //draw();
                 gameData.getKeys().update();
             }
 
