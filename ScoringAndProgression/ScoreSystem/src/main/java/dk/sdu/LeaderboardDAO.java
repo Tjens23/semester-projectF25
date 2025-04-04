@@ -1,4 +1,4 @@
-package ScoringAndProgression.ScoreSystem;
+package dk.sdu;
 
 import java.sql.*;
 import java.util.ArrayList;
