@@ -1,4 +1,4 @@
-package ScoringAndProgression.ScoreSystem;
+package dk.sdu;
 public class ScoreSystem {
     private int score;
 
