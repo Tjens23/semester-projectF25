@@ -9,7 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
 import java.util.List;
 public class GameMap implements IMapService {
-g
     private final Map<String, Entity> entityMap = new ConcurrentHashMap<>();
 
     @Override
