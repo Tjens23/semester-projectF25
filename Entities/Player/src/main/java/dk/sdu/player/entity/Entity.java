@@ -1,4 +1,4 @@
-package dk.sdu.entity;
+package dk.sdu.player.entity;
 
 import java.io.Serializable;
 import java.util.UUID;
