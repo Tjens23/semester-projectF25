@@ -14,5 +14,6 @@
     <module>GraphicsEngine</module>
     <module>CollisionSystem</module>
     <module>Map</module>
+    <module>CoreEngine</module>
   </modules>
 </project>
