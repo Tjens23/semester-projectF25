@@ -4,8 +4,8 @@
  */
 package dk.sdu.collisionsystem.services;
 
-import dk.sdu.map.World;
-import dk.sdu.entity.Entity;
+//import dk.sdu.map.World;
+//import dk.sdu.entity.Entity;
 
 
 /**

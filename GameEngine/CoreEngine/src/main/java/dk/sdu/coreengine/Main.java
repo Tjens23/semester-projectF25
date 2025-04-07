@@ -1,4 +1,4 @@
-package dk.sdu;
+package dk.sdu.coreengine;
 
 /**
  *
@@ -6,9 +6,9 @@ package dk.sdu;
  */
 
 
-import dk.sdu.data.GameData;
-import dk.sdu.data.GameKeys;
-import dk.sdu.services.IGamePlugin;
+import dk.sdu.coreenginedata.GameData;
+import dk.sdu.coreengine.data.GameKeys;
+import dk.sdu.coreengine.services.IGamePlugin;
 
 import java.util.Collection;
 import java.util.Map;
