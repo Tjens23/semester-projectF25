@@ -6,9 +6,17 @@
     <groupId>dk.sdu</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>dk.sdu</groupId>
+  <groupId>dk.sdu.Inventory</groupId>
   <artifactId>Inventory</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Inventory</name>
+  <dependencies>
+    <dependency>
+      <groupId>dk.sdu.item</groupId>
+      <artifactId>Item</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
 </project>

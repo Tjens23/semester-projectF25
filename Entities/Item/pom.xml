@@ -6,7 +6,7 @@
     <groupId>dk.sdu</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>dk.sdu</groupId>
+  <groupId>dk.sdu.item</groupId>
   <artifactId>Item</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
