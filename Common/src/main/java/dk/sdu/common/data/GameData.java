@@ -1,4 +1,4 @@
-package dk.sdu.cbse.common.data;
+package dk.sdu.common.data;
 
 public class GameData {
     private int displayWidth  = 800 ;

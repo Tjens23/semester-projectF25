@@ -1,4 +1,4 @@
-package dk.sdu.cbse.common.data;
+package dk.sdu.common.data;
 
 import java.io.Serializable;
 import java.util.UUID;

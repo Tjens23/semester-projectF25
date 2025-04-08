@@ -4,14 +4,15 @@ import java.util.Collection;
 import java.util.ServiceLoader;
 
 import static java.util.stream.Collectors.toList;
-import dk.sdu.cbse.common.bullet.Bullet;
-import dk.sdu.cbse.common.bullet.BulletSPI;
-import dk.sdu.cbse.common.data.Entity;
-import dk.sdu.cbse.common.data.GameData;
-import dk.sdu.cbse.common.data.GameKeys;
-import dk.sdu.cbse.common.data.World;
+import dk.sdu.common.bullet.Bullet;
+import dk.sdu.common.bullet.BulletSPI;
+import dk.sdu.common.data.Entity;
+import dk.sdu.common.data.GameData;
+import dk.sdu.common.data.GameKeys;
+import dk.sdu.common.data.World;
+import dk.sdu.common.services.IEntityProcessingService;
 
-public class PlayerControlSystem {
+public class PlayerControlSystem implements IEntityProcessingService{
     @Override
     public void process(GameData gameData, World world) {
 
@@ -58,4 +59,4 @@ public class PlayerControlSystem {
         return ServiceLoader.load(BulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 }
-}
+

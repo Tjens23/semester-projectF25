@@ -9,8 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>dk.sdu.cbse</groupId>
-    <artifactId>Player</artifactId>
+    <groupId>dk.sdu</groupId>
+    <artifactId>Bullet</artifactId>
     <packaging>jar</packaging>
 
     <properties>

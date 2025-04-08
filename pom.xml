@@ -13,6 +13,8 @@
         <module>Common</module>
         <module>Health</module>
         <module>Weapon</module>
+        <module>Bullet</module>
+        <module>CommonBullet</module>
     </modules>
 
     <properties>
