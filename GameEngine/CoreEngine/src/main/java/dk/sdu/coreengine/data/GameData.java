@@ -1,19 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dk.sdu.coreengine.data;
 
 /**
  *
  * @author tubnielsen
  */
+
+import dk.sdu.coreengine.data.GameKeys;
+
 public class GameData {
 
     private int displayWidth  = 1280 ;
     private int displayHeight = 720;
     private final GameKeys keys = new GameKeys();
-
 
     public GameKeys getKeys() {
         return keys;

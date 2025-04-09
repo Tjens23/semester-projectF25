@@ -9,18 +9,17 @@ package dk.sdu.collisionsystem;
  * @author tubnielsen
  */
 
-import dk.sdu.collisionsystem.services.ICollidable;
-import dk.sdu.map.World;
-import dk.sdu.coreengine.GameData;
+//import dk.sdu.collisionsystem.services.ICollidable;
+//import dk.sdu.coreengine.GameData;
 
-public class CollisionDetection implements ICollidable {
+//public class CollisionDetection implements ICollidable {
     
-    public void process(/*GameData gameData, World world*/) {
-        throw new UnsupportedOperationException('Not implemented yet.');
-    }
+//    public void process(/*GameData gameData, World world*/) {
+//        throw new UnsupportedOperationException('Not implemented yet.');
+//    }
     
-    public boolean collision(Entity e1, Entity e2){
-        throw new UnsupportedOperationException('Not implemented yet.');
+//    public boolean collision(Entity e1, Entity e2){
+//        throw new UnsupportedOperationException('Not implemented yet.');
 
-    }
-}
+//    }
+//}

@@ -14,8 +14,8 @@ package dk.sdu.collisionsystem.services;
  */
 public interface ICollidable {
     
-    void process(GameData gameData, World, world);
+    //void process(GameData gameData, World, world);
     
-    boolean collision(Entity e1, Entity e2);
+    //boolean collision(Entity e1, Entity e2);
    
 }

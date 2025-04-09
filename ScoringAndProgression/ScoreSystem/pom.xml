@@ -6,7 +6,7 @@
     <groupId>dk.sdu</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>dk.sdu.ScoreSystem</groupId>
+  <groupId>dk.sdu.Scoresystem</groupId>
   <artifactId>ScoreSystem</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>

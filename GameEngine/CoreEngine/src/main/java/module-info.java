@@ -8,4 +8,9 @@ module CoreEngine {
     requires javafx.graphics;
     requires javafx.baseEmpty;
     requires javafx.base;
+    
+    exports dk.sdu.player;
+    exports dk.sdu.map;
+    exports dk.sdu.collisionsystem;
+    exports dk.sdu.scoresystem;
 }
