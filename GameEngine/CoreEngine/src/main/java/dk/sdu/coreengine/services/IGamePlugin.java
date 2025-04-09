@@ -13,7 +13,7 @@ import dk.sdu.coreengine.data.GameData;
 
 public interface IGamePlugin {
 
-    void start(GameData gameData/*, World world*/);
+    //void start(GameData gameData/*, World world*/);
 
-    void stop(GameData gameData/*, World world*/);
+    //void stop(GameData gameData/*, World world*/);
 }

@@ -6,7 +6,7 @@ package dk.sdu.coreengine;
  */
 
 
-import dk.sdu.coreenginedata.GameData;
+import dk.sdu.coreengine.data.GameData;
 import dk.sdu.coreengine.data.GameKeys;
 import dk.sdu.coreengine.services.IGamePlugin;
 
@@ -102,9 +102,9 @@ public class Main extends Application implements IGamePlugin {
         });
 
         // Lookup all Game Plugins using ServiceLoader
-        for (IGamePluginService iGamePlugin : getPluginServices()) {
-            iGamePlugin.start(gameData/*, world*/);
-        }
+        //for (IGamePluginService iGamePlugin : getPluginServices()) {
+           // iGamePlugin.start(gameData/*, world*/);
+        //}
       
         render();
         window.setScene(scene);

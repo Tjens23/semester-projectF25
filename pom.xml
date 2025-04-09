@@ -106,7 +106,7 @@
                       <type>jar</type>
                     </artifactItem>
                   </artifactItems>
-                  <outputDirectory>../mods-mvn</outputDirectory>
+                  <outputDirectory>${project.basedir}../mods-mvn</outputDirectory>
                 </configuration>
               </execution>
             </executions>

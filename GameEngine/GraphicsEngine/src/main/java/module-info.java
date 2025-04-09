@@ -3,11 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/module-info.java to edit this template
  */
 
-module CoreEngine {
-    requires javafx.graphicsEmpty;
-    requires javafx.graphics;
-    requires javafx.baseEmpty;
-    requires javafx.base;
-    
-    exports dk.sdu.coreengine;
+module GraphicsEngine {    
+    exports dk.sdu.graphicsengine;
 }

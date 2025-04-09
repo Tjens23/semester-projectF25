@@ -11,4 +11,32 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Player</name>
+  <build>
+  <plugins>
+    <plugin>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>3.0.2</version>
+      <executions>
+        <execution>
+          <id>copy-installed</id>
+          <phase>install</phase>
+          <goals>
+            <goal>copy</goal>
+          </goals>
+          <configuration>
+            <artifactItems>
+              <artifactItem>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+              </artifactItem>
+            </artifactItems>
+            <outputDirectory>${project.basedir}/../mods-mvn</outputDirectory>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
 </project>
