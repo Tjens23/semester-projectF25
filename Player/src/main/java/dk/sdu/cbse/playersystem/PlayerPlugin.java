@@ -3,7 +3,7 @@ package dk.sdu.cbse.playersystem;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
-import dk.sdu.cbse.common.data.services.IGamePluginService;
+import dk.sdu.common.services.IGamePluginService;
 
 public class PlayerPlugin implements IGamePluginService {
     private Entity player;
