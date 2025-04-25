@@ -19,14 +19,14 @@
       <executions>
         <execution>
           <id>copy-installed</id>
-          <phase>install</phase>
+          <phase>package</phase>
           <goals>
             <goal>copy</goal>
           </goals>
           <configuration>
             <artifactItems>
               <artifactItem>
-                <groupId>${project.groupId}</groupId>
+                <groupId>dk.sdu.collisionsystem</groupId>
                 <artifactId>${project.artifactId}</artifactId>
                 <version>${project.version}</version>
                 <type>jar</type>
@@ -38,5 +38,5 @@
       </executions>
     </plugin>
   </plugins>
-</build>
+  </build>
 </project>
