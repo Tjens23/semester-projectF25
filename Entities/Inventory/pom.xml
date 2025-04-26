@@ -39,7 +39,7 @@
                 <type>jar</type>
               </artifactItem>
             </artifactItems>
-            <outputDirectory>${project.basedir}/../mods-mvn</outputDirectory>
+            <outputDirectory>${project.basedir}/../../mods-mvn</outputDirectory>
           </configuration>
         </execution>
       </executions>

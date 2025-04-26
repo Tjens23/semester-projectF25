@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dk.sdu.collisionsystem;
-
+import dk.sdu.collisionsystem.services.ICollidable;;
 /**
  *
  * @author tubnielsen
@@ -12,7 +12,7 @@ package dk.sdu.collisionsystem;
 //import dk.sdu.collisionsystem.services.ICollidable;
 //import dk.sdu.coreengine.GameData;
 
-//public class CollisionDetection implements ICollidable {
+public class CollisionDetection implements ICollidable {
     
 //    public void process(/*GameData gameData, World world*/) {
 //        throw new UnsupportedOperationException('Not implemented yet.');
@@ -22,4 +22,4 @@ package dk.sdu.collisionsystem;
 //        throw new UnsupportedOperationException('Not implemented yet.');
 
 //    }
-//}
+}
