@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>dk.sdu</groupId>
-      <artifactId>Common</artifactId>
+      <artifactId>Map</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>

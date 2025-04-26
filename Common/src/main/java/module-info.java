@@ -1,4 +1,5 @@
 module Common {
+    requires Map;
     exports dk.sdu.common.services;
     exports dk.sdu.common.data;
     exports dk.sdu.common.util;

@@ -13,9 +13,8 @@
   <name>Map</name>
   <dependencies>
     <dependency>
-      <groupId>dk.sdu.player</groupId>
-      <artifactId>Player</artifactId>
-
+      <groupId>dk.sdu</groupId>
+      <artifactId>Common</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>

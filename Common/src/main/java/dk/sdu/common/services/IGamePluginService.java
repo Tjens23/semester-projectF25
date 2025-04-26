@@ -1,10 +1,10 @@
 package dk.sdu.common.services;
 
 import dk.sdu.common.data.GameData;
-import dk.sdu.common.data.World;
+import dk.sdu.map.GameMap;
 
 public interface IGamePluginService {
-    void start(GameData gameData, World world);
-    void stop(GameData gameData, World world);
+    void start(GameData gameData, GameMap world);
+    void stop(GameData gameData, GameMap world);
 }
 
