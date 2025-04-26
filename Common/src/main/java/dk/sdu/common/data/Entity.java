@@ -1,9 +1,9 @@
-package dk.sdu.player.entity;
-
+package dk.sdu.common.data;
 import java.io.Serializable;
 import java.util.UUID;
 
 public class Entity implements Serializable {
+
     private final UUID ID = UUID.randomUUID();
 
     private double[] polygonCoordinates;
