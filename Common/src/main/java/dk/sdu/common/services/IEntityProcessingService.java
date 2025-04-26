@@ -1,8 +1,8 @@
 package dk.sdu.common.services;
 
 import dk.sdu.common.data.GameData;
-import dk.sdu.common.data.World;
+import dk.sdu.map.GameMap;
 
 public interface IEntityProcessingService {
-    void process(GameData gameData, World world);
+    void process(GameData gameData, GameMap world);
 }
