@@ -4,9 +4,7 @@
  */
 
 module CoreEngine {
-    requires javafx.graphicsEmpty;
     requires javafx.graphics;
-    requires javafx.baseEmpty;
     requires javafx.base;
     
     exports dk.sdu.coreengine;
