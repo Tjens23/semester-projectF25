@@ -1,10 +1,8 @@
 package dk.sdu.map;
 
-
-import dk.sdu.common.data.Entity;
-
 import java.util.Collection;
 import java.util.List;
+
 public interface IMapService {
     String addEntity(Entity entity);
     void removeEntity(String entityID);

@@ -1,15 +1,13 @@
 package dk.sdu.map;
 
-
-
-import dk.sdu.common.data.Entity;
-
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.ArrayList;
-import java.util.List;
-public class GameMap implements IMapService {
+
+public class Map implements IMapService {
+
     private final Map<String, Entity> entityMap = new ConcurrentHashMap<>();
 
     @Override
