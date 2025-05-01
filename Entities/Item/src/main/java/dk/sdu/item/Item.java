@@ -36,6 +36,14 @@ public class Item {
 
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
     public enum itemTypes{
         tool,
         sandbags,
