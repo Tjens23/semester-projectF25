@@ -1,4 +1,3 @@
 module CurrencySystem {
-    exports com.tjens23.semesterproject.CurrencySystem;
-
+    exports dk.sdu.currency;
 }

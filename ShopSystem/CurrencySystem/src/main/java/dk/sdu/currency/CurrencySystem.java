@@ -14,17 +14,17 @@ public class CurrencySystem {
     }
 
     // Tilføjer penge til spillerens balance
-    public void addCurrency(int amount) {
+    public void addCurrency(double amount) {
         if (amount > 0) {
-            balance += amount;
+            balance += (int) amount;
             System.out.println("Tilføjet " + amount + " til balancen. Ny balance: " + balance);
         }
     }
 
     // Fjerner penge fra spillerens balance (kun hvis der er nok penge)
-    public boolean subtractCurrency(int amount) {
+    public boolean subtractCurrency(double amount) {
         if (amount > 0 && balance >= amount) {
-            balance -= amount;
+            balance -= (int) amount;
             System.out.println("Trukket " + amount + " fra balancen. Ny balance: " + balance);
             return true;
         }

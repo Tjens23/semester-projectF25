@@ -1,25 +1,25 @@
 package dk.sdu.shop;
 
-import com.tjens23.semesterproject.entities.Player;
-import com.tjens23.semesterproject.entities.Item;
+
+import dk.sdu.item.Item;
+import dk.sdu.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ShopServiceImpl implements ShopService {
     private final Map<String, Item> items = new HashMap<>();
-
     public ShopServiceImpl() {
         // Tilføjer nogle varer til butikken (du kan tilføje flere)
-        items.put("Sword", new Item("Sword", 500));
-        items.put("Shield", new Item("Shield", 300));
-        items.put("Potion", new Item("Potion", 100));
+        items.put("Sword", new Item(0,"Sword", Item.itemTypes.antihailnet,500));
+        items.put("Shield", new Item(1,"Shield", Item.itemTypes.fertilizer,300));
+        items.put("Potion", new Item(2, "Potion", Item.itemTypes.plantPesticide,100));
     }
 
     @Override
     public boolean buyItem(Player player, Item item) {
         if (player.getCurrencySystem().subtractCurrency(item.getPrice())) {
-            player.getInventory().add(item);
+            player.getInventory().AddItemToInventory(item);
             System.out.println("Købte: " + item.getName());
             return true;
         }
@@ -29,9 +29,9 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public boolean sellItem(Player player, Item item) {
-        if (player.getInventory().contains(item)) {
+        if (player.getInventory().playerHasItem(item)) {
             player.getCurrencySystem().addCurrency(item.getPrice() / 2); // Sælger til halv pris
-            player.getInventory().remove(item);
+            player.getInventory().RemoveItemFromInventory(item);
             System.out.println("Solgte: " + item.getName());
             return true;
         }

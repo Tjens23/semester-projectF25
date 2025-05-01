@@ -10,11 +10,26 @@
     <artifactId>ShopSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-
   <groupId>dk.sdu</groupId>
   <artifactId>Shop</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-
   <name>Shop</name>
+  <dependencies>
+    <dependency>
+      <groupId>dk.sdu</groupId>
+      <artifactId>Player</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>dk.sdu</groupId>
+      <artifactId>Item</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>dk.sdu</groupId>
+      <artifactId>CurrencySystem</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 </project>
