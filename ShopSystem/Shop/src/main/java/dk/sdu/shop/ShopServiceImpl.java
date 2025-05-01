@@ -1,4 +1,4 @@
-package com.tjens23.semesterproject.ShopSystem;
+package dk.sdu.shop;
 
 import com.tjens23.semesterproject.entities.Player;
 import com.tjens23.semesterproject.entities.Item;

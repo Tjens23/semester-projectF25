@@ -1,4 +1,4 @@
-package com.tjens23.semesterproject.CurrencySystem;
+package dk.sdu.currency;
 
 public class CurrencySystem {
     private int balance; // Spillerens pengebeholdning
