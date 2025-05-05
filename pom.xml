@@ -15,6 +15,7 @@
         <module>Weapon</module>
         <module>Bullet</module>
         <module>CommonBullet</module>
+        <module>Item</module>
     </modules>
 
     <properties>

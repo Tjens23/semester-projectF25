@@ -5,7 +5,8 @@ public class Weapon implements IWeapon {
     private String name;
     private int damage;
 
-    public Weapon(){
+
+    public Weapon(String name, int ammo, int damage){
         this.ammo=ammo;
         this.name=name;
         this.damage=damage;
@@ -34,6 +35,25 @@ public class Weapon implements IWeapon {
 
     public int getAmmo() {
         return ammo;
+    }
+
+    public boolean isEmpty() {
+        return ammo <= 0;
+    }
+
+    public boolean canFire() {
+        return ammo > 0;
+    }
+    private float cooldown = 0.5f; // seconds
+    private float timeSinceLastShot = 0;
+
+    public boolean canShoot(float deltaTime) {
+        timeSinceLastShot += deltaTime;
+        if (timeSinceLastShot >= cooldown && ammo > 0) {
+            timeSinceLastShot = 0;
+            return true;
+        }
+        return false;
     }
 }
 

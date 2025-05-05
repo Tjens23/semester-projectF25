@@ -6,5 +6,6 @@ public interface IWeapon {
     void attack();
     int getDamage();
     String getName();
-
+    void reload(int bullets);
+    int getAmmo();
 }
