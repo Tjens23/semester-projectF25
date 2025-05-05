@@ -1,11 +1,9 @@
 package dk.sdu.common.data;
 
 public class GameData {
-
-    private int displayWidth  = 800 ;
+    private int displayWidth  = 800;
     private int displayHeight = 800;
     private final GameKeys keys = new GameKeys();
-
 
     public GameKeys getKeys() {
         return keys;
@@ -26,6 +24,5 @@ public class GameData {
     public int getDisplayHeight() {
         return displayHeight;
     }
-
-
 }
+
