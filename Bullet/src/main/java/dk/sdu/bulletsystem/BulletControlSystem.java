@@ -9,14 +9,17 @@ import dk.sdu.common.services.IEntityProcessingService;
 
 public class BulletControlSystem implements IEntityProcessingService, BulletSPI {
 
+    private static final double MOVEMENT_SPEED = 3.0;
+    private static final double BULLET_SPAWN_OFFSET = 10.0;
+
     @Override
     public void process(GameData gameData, World world) {
 
         for (Entity bullet : world.getEntities(Bullet.class)) {
             double changeX = Math.cos(Math.toRadians(bullet.getRotation()));
             double changeY = Math.sin(Math.toRadians(bullet.getRotation()));
-            bullet.setX(bullet.getX() + changeX * 3);
-            bullet.setY(bullet.getY() + changeY * 3);
+            bullet.setX(bullet.getX() + changeX * MOVEMENT_SPEED);
+            bullet.setY(bullet.getY() + changeY * MOVEMENT_SPEED);
         }
     }
 
