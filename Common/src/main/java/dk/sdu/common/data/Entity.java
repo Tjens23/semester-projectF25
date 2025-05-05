@@ -20,7 +20,6 @@ public class Entity implements Serializable {
         return ID.toString();
     }
 
-
     public void setPolygonCoordinates(double... coordinates) {
         this.polygonCoordinates = coordinates;
     }
@@ -29,7 +28,6 @@ public class Entity implements Serializable {
         return polygonCoordinates;
     }
 
-
     public void setX(double x) {
         this.x = x;
     }
@@ -37,7 +35,6 @@ public class Entity implements Serializable {
     public double getX() {
         return x;
     }
-
 
     public void setY(double y) {
         this.y = y;
@@ -66,6 +63,7 @@ public class Entity implements Serializable {
     public <T> void addComponent(T component) {
         components.put(component.getClass(), component);
     }
+
     @SuppressWarnings("unchecked")
     public <T> T getComponent(Class<T> cls) {
         return (T) components.get(cls);
@@ -78,6 +76,7 @@ public class Entity implements Serializable {
     public boolean hasComponent(Class<?> cls) {
         return components.containsKey(cls);
     }
+
     public void setTag(String tag) {
         this.tag = tag;
     }
@@ -89,6 +88,7 @@ public class Entity implements Serializable {
     public String getTag() {
         return tag;
     }
+
     public void markForRemoval() {
         this.markedForRemoval = true;
     }
@@ -96,6 +96,4 @@ public class Entity implements Serializable {
     public boolean isMarkedForRemoval() {
         return markedForRemoval;
     }
-
-
 }
