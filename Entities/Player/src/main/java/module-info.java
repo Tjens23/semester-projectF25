@@ -3,5 +3,8 @@ module Player {
     requires Common;
     requires Item;
     requires CurrencySystem;
+    
     exports dk.sdu.player;
+    exports dk.sdu.player.entity;   
 }
+

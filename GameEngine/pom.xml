@@ -12,7 +12,8 @@
   <name>GameEngine</name>
   <modules>
     <module>GraphicsEngine</module>
-    <module>CollisionSystem</module>
     <module>Map</module>
+    <module>CoreEngine</module>
+    <module>CollisionSystem</module>
   </modules>
 </project>
