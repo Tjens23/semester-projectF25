@@ -2,10 +2,8 @@ package dk.sdu.coreengine;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import dk.sdu.coreengine.data.GameData;
-import dk.sdu.coreengine.data.GameKeys;
-import dk.sdu.coreengine.services.IGamePlugin;
-import dk.sdu.player.entity.Entity;
+import dk.sdu.common.data.*;
+import dk.sdu.common.services.*;
 //import dk.sdu.map.Map;
 
 import javafx.animation.AnimationTimer;

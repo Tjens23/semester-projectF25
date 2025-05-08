@@ -1,61 +1,33 @@
 package dk.sdu.item;
 
-import java.util.ArrayList;
-
-public class Item {
-    public int index;
-    public String name;
-    public int price;
-    public itemTypes itemType;
-    static ArrayList<Item> allItems = new ArrayList<>();
-
-    public Item(int index, String name, itemTypes itemType, int price){
-        this.index = index;
-        this.name = name;
-        this.itemType = itemType;
-        this.price = price;
-
-
-        Item.addItemToList(this);
-
+import dk.sdu.common.data.Entity;
+public class Item extends Entity {
+    public enum ItemType {
+        AMMO,
+        HEALTH_PACK,
+        SPEED_BOOST,
+        WEAPON,
+        LOOT_BOX,
+        EQUIPMENT
     }
 
-    public static void addItemToList(Item thisItem){
+    private final ItemType type;
+    private boolean collected = false;
 
-
-        if(Item.allItems.isEmpty()){
-            Item.allItems.add(thisItem);
-        }else{
-            for (Item item: Item.allItems) {
-                if (!item.name.equalsIgnoreCase(thisItem.name)) {
-                    Item.allItems.add(thisItem);
-                }
-                break;
-            }
-        }
-
+    public Item(ItemType type) {
+        this.type = type;
     }
 
-    public String getName() {
-        return this.name;
+    public ItemType getType() {
+        return type;
     }
 
-    public double getPrice() {
-        return this.price;
+    public boolean isCollected() {
+        return collected;
     }
 
-    public enum itemTypes{
-        tool,
-        sandbags,
-        seeds,
-        waterPump,
-        fertilizer,
-        plantPesticide,
-        pesticide,
-        antihailnet,
+    public void collect() {
+        this.collected = true;
     }
 
-    public static ArrayList<Item> getItemList(){
-        return allItems;
-    }
 }

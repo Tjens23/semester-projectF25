@@ -1,10 +1,9 @@
 module Player {
     requires Inventory;
-    requires Common;
     requires Item;
     requires CurrencySystem;
+    requires Common;
     
     exports dk.sdu.player;
-    exports dk.sdu.player.entity;   
 }
 

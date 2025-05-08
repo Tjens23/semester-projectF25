@@ -6,29 +6,11 @@
     <groupId>dk.sdu</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>dk.sdu.player</groupId>
-  <artifactId>Player</artifactId>
+  <groupId>dk.sdu.bullet</groupId>
+  <artifactId>Bullet</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>Player</name>
-  <dependencies>
-    <dependency>
-      <groupId>dk.sdu.inventory</groupId>
-      <artifactId>Inventory</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>dk.sdu.currencysystem</groupId>
-      <artifactId>CurrencySystem</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>dk.sdu.common</groupId>
-      <artifactId>Common</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-
-  </dependencies>
+  <name>Enemy</name>
   <build>
   <plugins>
     <plugin>
@@ -44,7 +26,7 @@
           <configuration>
             <artifactItems>
               <artifactItem>
-                <groupId>dk.sdu.player</groupId>
+                <groupId>dk.sdu.enemy</groupId>
                 <artifactId>${project.artifactId}</artifactId>
                 <version>${project.version}</version>
                 <type>jar</type>
