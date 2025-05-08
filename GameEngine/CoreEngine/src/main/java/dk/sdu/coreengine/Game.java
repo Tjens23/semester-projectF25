@@ -1,22 +1,10 @@
 package dk.sdu.coreengine;
-
-/**
- *
- * @author tubnielsen
- */
-
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import dk.sdu.coreengine.data.GameData;
 import dk.sdu.coreengine.data.GameKeys;
-import dk.sdu.coreengine.services.IGamePlugin;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.ServiceLoader;
-import java.util.concurrent.ConcurrentHashMap;
-import static java.util.stream.Collectors.toList;
 import javafx.animation.AnimationTimer;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -25,19 +13,13 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Main extends Application implements IGamePlugin {
 
+public class Game {
     private final GameData gameData = new GameData();
-    //private final World world = new World();
-    //private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
     private final Pane gameWindow = new Pane();
-
-    public static void main(String[] args) {
-        System.out.println("CoreEngine is running!");
-        launch(Main.class);
-    }
-
-    @Override
+    private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
+    
+    
     public void start(Stage window) throws Exception {
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         gameWindow.getChildren().add(new Text(10, 20, "Zombies killed: 0"));
@@ -101,28 +83,17 @@ public class Main extends Application implements IGamePlugin {
                 gameData.getKeys().setKey(GameKeys.ESC, false);
             }
         });
-
-        // Lookup all Game Plugins using ServiceLoader
-        //for (IGamePluginService iGamePlugin : getPluginServices()) {
-           // iGamePlugin.start(gameData/*, world*/);
-        //}
-      
-        render();
-        window.setScene(scene);
-        window.setTitle("ZOMBIE DESTROYER (Unofficial)");
-        window.show();
     }
 
-    private void render() {
+
+    public void render() {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                //update();
-                //draw();
+                update();
+                draw();
                 gameData.getKeys().update();
             }
-
         }.start();
     }
 }
-

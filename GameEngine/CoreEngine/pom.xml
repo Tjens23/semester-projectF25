@@ -75,8 +75,20 @@
                     <version>${project.version}</version>
                     <type>jar</type>
                   </artifactItem>
+                  <artifactItem>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-controls</artifactId>
+                    <version>21.0.2</version>
+                    <type>jar</type>
+                  </artifactItem>
+                  <artifactItem>
+                    <groupId>org.openjfx</groupId>
+                    <artifactId>javafx-graphics</artifactId>
+                    <version>21.0.2</version>
+                    <type>jar</type>
+                  </artifactItem>
                 </artifactItems>
-                <outputDirectory>${project.basedir}/../../mods-mvn</outputDirectory>
+                <outputDirectory>${session.executionRootDirectory}/mods-mvn</outputDirectory>
               </configuration>
             </execution>
           </executions>

@@ -44,7 +44,7 @@
         <executions>
           <execution>
             <goals>
-              <goal>exec</goal>
+                <goal>exec</goal>
             </goals>
           </execution>
         </executions>
@@ -52,11 +52,12 @@
           <executable>java</executable>
           <workingDirectory>.</workingDirectory>
           <arguments>
-            <argument>--module-path=mods-mvn</argument>
-            <argument>--class-path=libs/*</argument>
-            <argument>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=127.0.0.1:8000</argument>
-            <argument>--module=CoreEngine/dk.sdu.coreengine.Main</argument>
-            <argument>--add-modules=javafx.graphics</argument>
+            <argument>--module-path</argument>
+            <argument>${session.executionRootDirectory}/mods-mvn</argument>
+            <argument>--add-modules</argument>
+            <argument>javafx.controls,javafx.graphics</argument>
+            <argument>--module</argument>
+            <argument>CoreEngine/dk.sdu.coreengine.Main</argument>
           </arguments>
         </configuration>
       </plugin>
@@ -117,7 +118,7 @@
                       <type>jar</type>
                     </artifactItem>
                   </artifactItems>
-                  <outputDirectory>${project.basedir}../mods-mvn</outputDirectory>
+                  <outputDirectory>${project.basedir}/../mods-mvn</outputDirectory>
                 </configuration>
               </execution>
               <execution>
