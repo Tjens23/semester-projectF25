@@ -6,6 +6,8 @@
 module CoreEngine {
     requires javafx.graphics;
     requires javafx.controls;
+    requires Map;
+    requires Player;
     
     exports dk.sdu.coreengine;
 }
