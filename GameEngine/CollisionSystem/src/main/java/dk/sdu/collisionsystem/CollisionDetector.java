@@ -3,7 +3,7 @@ package dk.sdu.collisionsystem;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.services.IPostEntityProcessingService;
-import dk.sdu.map.GameMap;
+import dk.sdu.common.data.World;
 
 public class CollisionDetector implements IPostEntityProcessingService {
 
@@ -11,7 +11,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
     }
 
     @Override
-    public void process(GameData gameData, GameMap world) {
+    public void process(GameData gameData, World world) {
         // two for loops for all entities in the world
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {

@@ -2,10 +2,8 @@ package dk.sdu.coreengine;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import dk.sdu.coreengine.data.GameData;
-import dk.sdu.coreengine.data.GameKeys;
-import dk.sdu.coreengine.services.IGamePlugin;
-import dk.sdu.player.entity.Entity;
+import dk.sdu.common.data.*;
+import dk.sdu.common.services.*;
 //import dk.sdu.map.Map;
 
 import javafx.animation.AnimationTimer;
@@ -43,7 +41,7 @@ public class Game {
                 gameData.getKeys().setKey(GameKeys.DOWN, true);
             }
             if (event.getCode().equals(KeyCode.SPACE)) {
-                gameData.getKeys().setKey(GameKeys.SHOOT, true);
+                gameData.getKeys().setKey(GameKeys.SPACE, true);
             }
             if (event.getCode().equals(KeyCode.R)) {
                 gameData.getKeys().setKey(GameKeys.RELOAD, true);
@@ -72,7 +70,7 @@ public class Game {
                 gameData.getKeys().setKey(GameKeys.DOWN, false);
             }
             if (event.getCode().equals(KeyCode.SPACE)) {
-                gameData.getKeys().setKey(GameKeys.SHOOT, false);
+                gameData.getKeys().setKey(GameKeys.SPACE, false);
             }
             if (event.getCode().equals(KeyCode.R)) {
                 gameData.getKeys().setKey(GameKeys.RELOAD, false);

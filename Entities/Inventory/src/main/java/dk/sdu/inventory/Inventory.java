@@ -5,7 +5,7 @@ import dk.sdu.item.Item;
 import java.util.ArrayList;
 
 public class Inventory {
-    public ArrayList<Item> inventory = new ArrayList<>();
+   /* public ArrayList<Item> inventory = new ArrayList<>();
 
     public void AddItemToInventory(Item item) {
         int inventorySlots = 8;
@@ -72,5 +72,5 @@ public class Inventory {
         } else {
             System.out.println("Inventory is full!");
         }
-    }
+    }*/
 }

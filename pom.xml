@@ -7,8 +7,9 @@
   <name>semester-projectF25</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.9</maven.compiler.source>
-    <maven.compiler.target>1.9</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.release>21</maven.compiler.release>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -34,7 +35,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.10.1</version>
         <configuration>
-          <fork>true</fork>
+          <source>21</source>
+          <target>21</target>
         </configuration>
       </plugin>
       <plugin>
@@ -152,8 +154,8 @@
     </profile>
   </profiles>
   <modules>
-    <module>Entities</module>
     <module>GameEngine</module>
+    <module>Entities</module>
     <module>AISystem</module>
     <module>ShopSystem</module>
     <module>ScoringAndProgression</module>

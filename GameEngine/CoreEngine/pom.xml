@@ -23,8 +23,8 @@
             <version>21.0.2</version>
         </dependency>
         <dependency>
-            <groupId>dk.sdu.player</groupId>
-            <artifactId>Player</artifactId>
+            <groupId>dk.sdu.common</groupId>
+            <artifactId>Common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
