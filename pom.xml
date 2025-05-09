@@ -154,8 +154,8 @@
     </profile>
   </profiles>
   <modules>
-    <module>Entities</module>
     <module>GameEngine</module>
+    <module>Entities</module>
     <module>AISystem</module>
     <module>ShopSystem</module>
     <module>ScoringAndProgression</module>

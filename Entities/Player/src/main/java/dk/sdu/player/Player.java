@@ -12,6 +12,7 @@ public class Player extends Entity {
         this.name = name;
         this.health = health;
     }
+    public Player() {}
 
     public String getName() {
         return name;

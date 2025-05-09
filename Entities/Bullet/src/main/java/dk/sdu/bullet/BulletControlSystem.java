@@ -1,7 +1,7 @@
-package dk.sdu.bulletsystem;
+package dk.sdu.bullet;
 
-import dk.sdu.common.bullet.Bullet;
-import dk.sdu.common.bullet.BulletSPI;
+import dk.sdu.bullet.Bullet;
+import dk.sdu.bullet.BulletSPI;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;

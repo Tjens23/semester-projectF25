@@ -10,7 +10,7 @@ public class GameKeys {
     public static final int LEFT = 1;       // KeyCode.A 
     public static final int RIGHT = 2;      // KeyCode.D
     public static final int DOWN = 3;       // KeyCode.S
-    public static final int SHOOT = 4;      // KeyCode.SPACE
+    public static final int SPACE = 4;      // KeyCode.SPACE
     public static final int RELOAD = 5;     // KeyCode.R
     public static final int LEFT_CLICK = 6; // MouseButton.PRIMARY
     public static final int RIGHT_CLICK = 7;// MouseButton.SECONDARY

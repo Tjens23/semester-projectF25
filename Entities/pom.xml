@@ -11,10 +11,11 @@
   <packaging>pom</packaging>
   <name>Entities</name>
   <modules>
-    <module>Enemy</module>
-    <module>Player</module>
+    <module>Bullet</module>
     <module>Weapon</module>
     <module>Item</module>
     <module>Inventory</module>
+    <module>Player</module>
+    <module>Enemy</module>
   </modules>
 </project>

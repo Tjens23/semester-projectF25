@@ -2,7 +2,8 @@ package dk.sdu.coreengine;
 
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.GameKeys;
-import dk.sdu.common.services.IGamePlugin;
+import dk.sdu.common.data.World;
+import dk.sdu.coreengine.Game;
 
 import java.util.Collection;
 import java.util.Map;
@@ -19,11 +20,11 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Main extends Application implements IGamePlugin {
+public class Main {
 
     public static void main(String[] args) {
         System.out.println("CoreEngine is running!");
-        launch(Main.class);
+        //launch(Main.class);
     }
 
         // Lookup all Game Plugins using ServiceLoader
@@ -31,7 +32,7 @@ public class Main extends Application implements IGamePlugin {
            // iGamePlugin.start(gameData/*, world*/);
         //}
       
-        render();
+    /*    render();
         window.setScene(scene);
         window.setTitle("ZOMBIE DESTROYER (Unofficial)");
         window.show();
@@ -47,6 +48,6 @@ public class Main extends Application implements IGamePlugin {
             }
 
         }.start();
-    }
+    }*/ 
 }
 

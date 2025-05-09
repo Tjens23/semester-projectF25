@@ -41,7 +41,7 @@ public class Game {
                 gameData.getKeys().setKey(GameKeys.DOWN, true);
             }
             if (event.getCode().equals(KeyCode.SPACE)) {
-                gameData.getKeys().setKey(GameKeys.SHOOT, true);
+                gameData.getKeys().setKey(GameKeys.SPACE, true);
             }
             if (event.getCode().equals(KeyCode.R)) {
                 gameData.getKeys().setKey(GameKeys.RELOAD, true);
@@ -70,7 +70,7 @@ public class Game {
                 gameData.getKeys().setKey(GameKeys.DOWN, false);
             }
             if (event.getCode().equals(KeyCode.SPACE)) {
-                gameData.getKeys().setKey(GameKeys.SHOOT, false);
+                gameData.getKeys().setKey(GameKeys.SPACE, false);
             }
             if (event.getCode().equals(KeyCode.R)) {
                 gameData.getKeys().setKey(GameKeys.RELOAD, false);

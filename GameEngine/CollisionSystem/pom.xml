@@ -13,7 +13,7 @@
   <name>CollisionSystem</name>
   <dependencies>
     <dependency>
-      <groupId>dk.sdu</groupId>
+      <groupId>dk.sdu.map</groupId>
       <artifactId>Map</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
