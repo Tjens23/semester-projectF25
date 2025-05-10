@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>Entities</artifactId>
+    <groupId>dk.sdu</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <groupId>dk.sdu.bullet</groupId>
+  <artifactId>Bullet</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>Bullet</name>
+  <dependencies>
+    <dependency>
+      <groupId>dk.sdu.common</groupId>
+      <artifactId>Common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  <build>
+  <plugins>
+    <plugin>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>3.0.2</version>
+      <executions>
+        <execution>
+          <id>copy-installed</id>
+          <phase>package</phase>
+          <goals>
+            <goal>copy</goal>
+          </goals>
+          <configuration>
+            <artifactItems>
+              <artifactItem>
+                <groupId>dk.sdu.bullet</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+              </artifactItem>
+            </artifactItems>
+            <outputDirectory>${project.basedir}/../../mods-mvn</outputDirectory>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+</project>

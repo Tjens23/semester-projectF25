@@ -1,7 +1,5 @@
 package dk.sdu.map;
 
-
-
 import dk.sdu.common.data.Entity;
 
 import java.util.Collection;
