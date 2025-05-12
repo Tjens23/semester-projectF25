@@ -6,21 +6,37 @@
     <groupId>dk.sdu</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>dk.sdu.ScoreSystem</groupId>
+  <groupId>dk.sdu.scoresystem</groupId>
   <artifactId>ScoreSystem</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>ScoreSystem</name>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>22</source>
-                    <target>22</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <build>
+  <plugins>
+    <plugin>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>3.0.2</version>
+      <executions>
+        <execution>
+          <id>copy-installed</id>
+          <phase>package</phase>
+          <goals>
+            <goal>copy</goal>
+          </goals>
+          <configuration>
+            <artifactItems>
+              <artifactItem>
+                <groupId>dk.sdu.scoresystem</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+              </artifactItem>
+            </artifactItems>
+            <outputDirectory>${project.basedir}/../../mods-mvn</outputDirectory>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
 </project>

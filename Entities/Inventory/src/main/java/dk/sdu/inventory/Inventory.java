@@ -5,7 +5,7 @@ import dk.sdu.item.Item;
 import java.util.ArrayList;
 
 public class Inventory {
-    public ArrayList<Item> inventory = new ArrayList<>();
+   /* public ArrayList<Item> inventory = new ArrayList<>();
 
     public void AddItemToInventory(Item item) {
         int inventorySlots = 8;
@@ -23,6 +23,13 @@ public class Inventory {
         }
     }
 
+    public void RemoveItemFromInventory(Item item) {
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).name.equals(item.name))
+                inventory.remove(item);
+        }
+    }
+
 
     public Item CheckForItem(int itemIndex) {
         for (Item item :
@@ -33,13 +40,21 @@ public class Inventory {
         return null;
     }
 
-    public Item CheckForItem(String itemName) {
-        for (Item item :
-                inventory) {
-            if (item.name.equalsIgnoreCase(itemName))
+    public Item CheckForItem(Item itemName) {
+        for (Item item : inventory) {
+            if (item.name.equals(itemName))
                 return item;
         }
         return null;
+    }
+
+
+    public Boolean playerHasItem(Item item) {
+        for (Item item1 : inventory) {
+            if (item1.name.equals(item.name))
+                return true;
+        }
+        return false;
     }
 
     public Boolean BoolCheckForItemType(Item.itemTypes itemTypes) {
@@ -50,4 +65,12 @@ public class Inventory {
         }
         return false;
     }
+
+    public void add(Item item) {
+        if (inventory.size() < 8) {
+            inventory.add(item);
+        } else {
+            System.out.println("Inventory is full!");
+        }
+    }*/
 }

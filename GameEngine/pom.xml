@@ -11,8 +11,10 @@
   <packaging>pom</packaging>
   <name>GameEngine</name>
   <modules>
+    <module>Common</module>
     <module>GraphicsEngine</module>
-    <module>CollisionSystem</module>
     <module>Map</module>
+    <module>CoreEngine</module>
+    <module>CollisionSystem</module>
   </modules>
 </project>

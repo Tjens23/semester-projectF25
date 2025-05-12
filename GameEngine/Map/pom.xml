@@ -6,16 +6,49 @@
     <groupId>dk.sdu</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>dk.sdu</groupId>
+  <groupId>dk.sdu.map</groupId>
   <artifactId>Map</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Map</name>
   <dependencies>
     <dependency>
-      <groupId>dk.sdu</groupId>
+      <groupId>dk.sdu.player</groupId>
+      <artifactId>Player</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>dk.sdu.common</groupId>
       <artifactId>Common</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
+  <build>
+  <plugins>
+    <plugin>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>3.0.2</version>
+      <executions>
+        <execution>
+          <id>copy-installed</id>
+          <phase>package</phase>
+          <goals>
+            <goal>copy</goal>
+          </goals>
+          <configuration>
+            <artifactItems>
+              <artifactItem>
+                <groupId>dk.sdu.map</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+              </artifactItem>
+            </artifactItems>
+            <outputDirectory>${project.basedir}/../../mods-mvn</outputDirectory>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
 </project>

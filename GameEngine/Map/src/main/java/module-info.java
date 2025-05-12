@@ -1,4 +1,6 @@
 module Map {
-    exports dk.sdu.map;
     requires Common;
+    requires Player;
+    
+    exports dk.sdu.map;
 }
