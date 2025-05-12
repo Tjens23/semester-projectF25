@@ -6,8 +6,19 @@
 module CoreEngine {
     requires javafx.graphics;
     requires javafx.controls;
+    requires spring.context;
+    requires spring.core;
+    requires spring.beans;
+
     requires Map;
     requires Common;
     
+    opens dk.sdu.coreengine to javafx.graphics, spring.core;
+
+    uses dk.sdu.common.services.IGamePluginService;
+    uses dk.sdu.common.services.IEntityProcessingService;
+    uses dk.sdu.common.services.IPostEntityProcessingService;
+    
+
     exports dk.sdu.coreengine;
 }
