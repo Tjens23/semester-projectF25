@@ -55,7 +55,7 @@
           <workingDirectory>.</workingDirectory>
           <arguments>
             <argument>--module-path</argument>
-            <argument>/home/tubnielsen/repos/semester-projectF25/mods-mvn</argument>
+            <argument>${session.executionRootDirectory}/mods-mvn</argument>
             <argument>--add-modules</argument>
             <argument>javafx.controls,javafx.graphics</argument>
             <argument>--module</argument>
@@ -178,11 +178,11 @@
     </profile>
   </profiles>
   <modules>
-    <module>GameEngine</module>
+    <module>ShopSystem</module>
     <module>Entities</module>
     <module>AISystem</module>
-    <module>ShopSystem</module>
     <module>ScoringAndProgression</module>
+    <module>GameEngine</module>
   </modules>
 </project>
 

@@ -26,6 +26,7 @@ public class Game {
     private final List<IEntityProcessingService> entityProcessingServiceList;
     private final List<IPostEntityProcessingService> postEntityProcessingServices;
 
+
     Game(List<IGamePluginService> gamePluginServices, List<IEntityProcessingService> entityProcessingServiceList, List<IPostEntityProcessingService> postEntityProcessingServices) {
         this.gamePluginServices = gamePluginServices;
         this.entityProcessingServiceList = entityProcessingServiceList;
@@ -65,6 +66,9 @@ public class Game {
             if (event.getCode().equals(KeyCode.ESCAPE)) {
                 gameData.getKeys().setKey(GameKeys.ESC, true);
             }
+            if (event.getCode().equals(KeyCode.P)) {
+                gameData.getKeys().setKey(GameKeys.SHOP, true);
+            }
         });
         scene.setOnKeyReleased(event -> {
             if (event.getCode().equals(KeyCode.W)) {
@@ -93,6 +97,9 @@ public class Game {
             }
             if (event.getCode().equals(KeyCode.ESCAPE)) {
                 gameData.getKeys().setKey(GameKeys.ESC, false);
+            }
+            if (event.getCode().equals(KeyCode.P)) {
+                gameData.getKeys().setKey(GameKeys.SHOP, false);
             }
         });
 
@@ -172,4 +179,5 @@ public class Game {
     public List<IPostEntityProcessingService> getPostEntityProcessingServices() {
         return postEntityProcessingServices;
     }
+
 }

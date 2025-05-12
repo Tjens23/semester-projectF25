@@ -12,13 +12,15 @@ module CoreEngine {
 
     requires Map;
     requires Common;
+    requires Shop;
+    requires Item;
     
     opens dk.sdu.coreengine to javafx.graphics, spring.core;
 
     uses dk.sdu.common.services.IGamePluginService;
     uses dk.sdu.common.services.IEntityProcessingService;
     uses dk.sdu.common.services.IPostEntityProcessingService;
-    
+
 
     exports dk.sdu.coreengine;
 }
