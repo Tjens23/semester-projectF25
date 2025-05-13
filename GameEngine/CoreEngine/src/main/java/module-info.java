@@ -12,8 +12,6 @@ module CoreEngine {
 
     requires Map;
     requires Common;
-    requires Shop;
-    requires Item;
     
     opens dk.sdu.coreengine to javafx.graphics, spring.core;
 

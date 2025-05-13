@@ -23,13 +23,13 @@ public class Game {
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
 
     private final List<IGamePluginService> gamePluginServices;
-    private final List<IEntityProcessingService> entityProcessingServiceList;
+    private final List<IEntityProcessingService> entityProcessingServices;
     private final List<IPostEntityProcessingService> postEntityProcessingServices;
 
 
-    Game(List<IGamePluginService> gamePluginServices, List<IEntityProcessingService> entityProcessingServiceList, List<IPostEntityProcessingService> postEntityProcessingServices) {
+    Game(List<IGamePluginService> gamePluginServices, List<IEntityProcessingService> entityProcessingServices, List<IPostEntityProcessingService> postEntityProcessingServices) {
         this.gamePluginServices = gamePluginServices;
-        this.entityProcessingServiceList = entityProcessingServiceList;
+        this.entityProcessingServices = entityProcessingServices;
         this.postEntityProcessingServices = postEntityProcessingServices;
     }
     
@@ -104,12 +104,14 @@ public class Game {
         });
 
         // Lookup all Game Plugins using service loader
+        System.out.println("yubi");
+        System.out.println("GamePluginServices: " + gamePluginServices);
         for (IGamePluginService plugin : gamePluginServices) {
             plugin.start(gameData, world);
         }
-        
         // Lookup all Entities in world object
         for (Entity entity : world.getEntities()) {
+            System.out.println(entity.getPolygonCoordinates() + " THIIS IS THE POLYGON COORDINATES");
             Polygon polygon = new Polygon(entity.getPolygonCoordinates());
             polygons.put(entity, polygon);
             gameWindow.getChildren().add(polygon);
@@ -169,11 +171,19 @@ public class Game {
     }
 
     public List<IGamePluginService> getGamePluginServices() {
+        System.out.println("GamePluginServices: " + gamePluginServices);
+        for (IGamePluginService plugin : gamePluginServices) {
+            System.out.println("Plugin: " + plugin);
+        }
         return gamePluginServices;
     }
 
     public List<IEntityProcessingService> getEntityProcessingServices() {
-        return entityProcessingServiceList;
+        /*System.out.println("EntityProcessingServices: " + entityProcessingServices);
+        for (IEntityProcessingService entityProcessingService : entityProcessingServices) {
+            System.out.println("EntityProcessingService: " + entityProcessingService);
+        }*/
+        return entityProcessingServices;
     }
 
     public List<IPostEntityProcessingService> getPostEntityProcessingServices() {

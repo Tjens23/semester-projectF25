@@ -1,19 +1,7 @@
-package dk.sdu.coreengine;
+package dk.sdu.shop;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import dk.sdu.shop.ShopService;
-import dk.sdu.item.Item;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-public class GameFeatures {
-    
-    private AnnotationConfigApplicationContext ctx;
+public class shopUI {
+    /*private AnnotationConfigApplicationContext ctx;
 
     public GameFeatures(AnnotationConfigApplicationContext ctx) {
         this.ctx = ctx;
@@ -44,5 +32,5 @@ public class GameFeatures {
         Scene scene = new Scene(layout, 300, 400);
         shopStage.setScene(scene);
         shopStage.showAndWait();
-    }
+    }*/
 }

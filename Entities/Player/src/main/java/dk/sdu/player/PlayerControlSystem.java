@@ -17,6 +17,7 @@ public class PlayerControlSystem implements IEntityProcessingService{
     public void process(GameData gameData, World world) {
 
         for (Entity player : world.getEntities(Player.class)) {
+            System.out.println("x: " + player.getX() + " y: " + player.getY());
             if (gameData.getKeys().isDown(GameKeys.LEFT)) {
                 player.setRotation(player.getRotation() - 5);
             }
@@ -38,18 +39,20 @@ public class PlayerControlSystem implements IEntityProcessingService{
             if (player.getX() < 0) {
                 player.setX(1);
             }
-
-            if (player.getX() > gameData.getDisplayWidth()) {
+            
+            //TODO: Should center view to player center instead, so can never be out of bounds of display
+            /*if (player.getX() > gameData.getDisplayWidth()) {
                 player.setX(gameData.getDisplayWidth()-1);
-            }
+            }*/
 
             if (player.getY() < 0) {
                 player.setY(1);
             }
 
-            if (player.getY() > gameData.getDisplayHeight()) {
+            //TODO: Should center view to player center instead, so can never be out of bounds of display
+            /*if (player.getY() > gameData.getDisplayHeight()) {
                 player.setY(gameData.getDisplayHeight()-1);
-            }
+            }*/
 
 
         }
