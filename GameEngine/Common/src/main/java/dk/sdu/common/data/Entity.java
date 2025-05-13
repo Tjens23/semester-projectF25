@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import javafx.scene.Node;
 
 public class Entity implements Serializable {
     private final Map<Class<?>, Object> components = new HashMap<>();
@@ -95,5 +96,15 @@ public class Entity implements Serializable {
 
     public boolean isMarkedForRemoval() {
         return markedForRemoval;
+    }
+    //Entities can now have images
+    private Node view;
+
+    public void setView(Node view) {
+        this.view = view;
+    }
+
+    public Node getView() {
+        return view;
     }
 }
