@@ -18,43 +18,52 @@ public class PlayerControlSystem implements IEntityProcessingService{
 
         for (Entity player : world.getEntities(Player.class)) {
             System.out.println("x: " + player.getX() + " y: " + player.getY());
+            
+            double speed = 1;
+            double dx = 0; //Change in position in x
+            double dy = 0; //Change in position in y
+            
+            // Movement keys
             if (gameData.getKeys().isDown(GameKeys.LEFT)) {
-                player.setRotation(player.getRotation() - 5);
+                dx = -speed;
             }
             if (gameData.getKeys().isDown(GameKeys.RIGHT)) {
-                player.setRotation(player.getRotation() + 5);
+                dx = speed;
             }
             if (gameData.getKeys().isDown(GameKeys.UP)) {
-                double changeX = Math.cos(Math.toRadians(player.getRotation()));
-                double changeY = Math.sin(Math.toRadians(player.getRotation()));
-                player.setX(player.getX() + changeX);
-                player.setY(player.getY() + changeY);
+                dy = -speed;
             }
-            if(gameData.getKeys().isDown(GameKeys.SPACE)) {
-                getBulletSPIs().stream().findFirst().ifPresent(
-                        spi -> {world.addEntity(spi.createBullet(player, gameData));}
-                );
+            if (gameData.getKeys().isDown(GameKeys.DOWN)) {
+                dy = speed;
             }
 
+            // Take into account for diagonal movement
+            if (dx != 0 && dy != 0) {
+                double diagonalSpeed = speed / Math.sqrt(2);
+                dx = dx > 0 ? diagonalSpeed : -diagonalSpeed;
+                dy = dy > 0 ? diagonalSpeed : -diagonalSpeed;
+            }
+
+            //Update player position
+            player.setX(player.getX() + dx);
+            player.setY(player.getY() + dy);
+
+            
+            // Circumvent edge of screen
             if (player.getX() < 0) {
                 player.setX(1);
             }
-            
-            //TODO: Should center view to player center instead, so can never be out of bounds of display
-            /*if (player.getX() > gameData.getDisplayWidth()) {
-                player.setX(gameData.getDisplayWidth()-1);
-            }*/
 
             if (player.getY() < 0) {
                 player.setY(1);
             }
 
-            //TODO: Should center view to player center instead, so can never be out of bounds of display
-            /*if (player.getY() > gameData.getDisplayHeight()) {
-                player.setY(gameData.getDisplayHeight()-1);
-            }*/
-
-
+            // Handle shooting mechanics
+            if (gameData.getKeys().isDown(GameKeys.SPACE)) {
+                getBulletSPIs().stream().findFirst().ifPresent(
+                    spi -> world.addEntity(spi.createBullet(player, gameData))
+                );
+            }
         }
     }
 

@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
 import javafx.scene.Node;
 
 public class Entity implements Serializable {
     private final Map<Class<?>, Object> components = new HashMap<>();
     private final UUID ID = UUID.randomUUID();
     private String tag;
-    private double[] polygonCoordinates;
+    private Node entityImage;
     private double x;
     private double y;
     private double rotation;
@@ -19,14 +20,6 @@ public class Entity implements Serializable {
 
     public String getID() {
         return ID.toString();
-    }
-
-    public void setPolygonCoordinates(double... coordinates) {
-        this.polygonCoordinates = coordinates;
-    }
-
-    public double[] getPolygonCoordinates() {
-        return polygonCoordinates;
     }
 
     public void setX(double x) {
@@ -97,14 +90,12 @@ public class Entity implements Serializable {
     public boolean isMarkedForRemoval() {
         return markedForRemoval;
     }
-    //Entities can now have images
-    private Node view;
 
-    public void setView(Node view) {
-        this.view = view;
+    public void setView(Node entityImage) {
+        this.entityImage = entityImage;
     }
 
     public Node getView() {
-        return view;
+        return entityImage;
     }
 }
