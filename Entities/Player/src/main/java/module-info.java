@@ -6,5 +6,7 @@ module Player {
     requires Bullet;
     
     exports dk.sdu.player;
+
+    requires javafx.graphics;
 }
 
