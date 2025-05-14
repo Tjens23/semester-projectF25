@@ -1,6 +1,9 @@
 package dk.sdu.bullet;
 
 import dk.sdu.common.data.Entity;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Bullet extends Entity {
     private static final int DEFAULT_BULLET_SIZE = 2;
@@ -18,7 +21,8 @@ public class Bullet extends Entity {
             coordinates[i] = shape[i];
         }
         
-        setPolygonCoordinates(coordinates);
+        
+
         setRadius(DEFAULT_BULLET_SIZE * 2);
         
         // Debug print

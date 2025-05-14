@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 
 public class Entity implements Serializable {
     private final Map<Class<?>, Object> components = new HashMap<>();
     private final UUID ID = UUID.randomUUID();
     private String tag;
-    private Node entityImage;
+    private ImageView entityImage;
     private double x;
     private double y;
     private double rotation;
@@ -91,11 +91,11 @@ public class Entity implements Serializable {
         return markedForRemoval;
     }
 
-    public void setView(Node entityImage) {
+    public void setView(ImageView entityImage) {
         this.entityImage = entityImage;
     }
 
-    public Node getView() {
+    public ImageView getView() {
         return entityImage;
     }
 }

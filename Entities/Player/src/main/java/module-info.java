@@ -11,6 +11,8 @@ module Player {
 
     provides IGamePluginService with dk.sdu.player.PlayerPlugin;
     provides IEntityProcessingService with dk.sdu.player.PlayerControlSystem;
+
+    uses dk.sdu.bullet.BulletSPI;
     
     exports dk.sdu.player;
 }

@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Polygon;
+import javafx.scene.Node;
+// Removed invalid import
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -20,7 +22,7 @@ public class Game {
     private final GameData gameData = new GameData();
     private final World world = new World();
     private final Pane gameWindow = new Pane();
-    private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
+    private final Map<Entity, ImageView> entities = new ConcurrentHashMap<>();
 
     private final List<IGamePluginService> gamePluginServices;
     private final List<IEntityProcessingService> entityProcessingServices;
@@ -104,21 +106,17 @@ public class Game {
         });
 
         // Lookup all Game Plugins using service loader
-        System.out.println("yubi");
         System.out.println("GamePluginServices: " + gamePluginServices);
         for (IGamePluginService plugin : gamePluginServices) {
             plugin.start(gameData, world);
         }
         // Lookup all Entities in world object
         for (Entity entity : world.getEntities()) {
-            System.out.println(entity.getPolygonCoordinates() + " THIIS IS THE POLYGON COORDINATES");
-            Polygon polygon = new Polygon(entity.getPolygonCoordinates());
-            polygons.put(entity, polygon);
-            gameWindow.getChildren().add(polygon);
+            gameWindow.getChildren().add(entity.getView());
         }
         
         // Set up the stage
-        window.setTitle("Zombie Destroyer");
+        window.setTitle("Zombie Destroyer Demo");
         window.setScene(scene);
         window.setResizable(false);
         gameData.setDisplayWidth((int) window.getWidth());
@@ -149,40 +147,42 @@ public class Game {
     }
 
     private void draw() {
-        for (Entity polygonEntity : polygons.keySet()) {
-            if (!world.getEntities().contains(polygonEntity)) {
-                Polygon removedPolygon = polygons.get(polygonEntity);
-                polygons.remove(polygonEntity);
-                gameWindow.getChildren().remove(removedPolygon);
+        
+        for (Entity entity : entities.keySet()) {
+            if (!world.getEntities().contains(entity)) {
+                ImageView removedEntity = entities.get(entity);
+                entities.remove(entity);
+                gameWindow.getChildren().remove(removedEntity);
             }
         }
 
         for (Entity entity : world.getEntities()) {
-            Polygon polygon = polygons.get(entity);
-            if (polygon == null) {
-                polygon = new Polygon(entity.getPolygonCoordinates());
-                polygons.put(entity, polygon);
-                gameWindow.getChildren().add(polygon);
+            ImageView view = entities.get(entity);
+
+            if (view == null) {
+                view = entity.getView();
+                if (view != null) {
+                    entities.put(entity, view);
+                    if (!gameWindow.getChildren().contains(view)) { // Prevent duplicate addition
+                        gameWindow.getChildren().add(view);
+                    }
+                }
             }
-            polygon.setTranslateX(entity.getX());
-            polygon.setTranslateY(entity.getY());
-            polygon.setRotate(entity.getRotation());
+
+            if (view != null) {
+                view.setX(entity.getX());
+                view.setY(entity.getY());
+                view.setRotate(entity.getRotation());
+            }
         }
     }
 
     public List<IGamePluginService> getGamePluginServices() {
         System.out.println("GamePluginServices: " + gamePluginServices);
-        for (IGamePluginService plugin : gamePluginServices) {
-            System.out.println("Plugin: " + plugin);
-        }
         return gamePluginServices;
     }
 
     public List<IEntityProcessingService> getEntityProcessingServices() {
-        /*System.out.println("EntityProcessingServices: " + entityProcessingServices);
-        for (IEntityProcessingService entityProcessingService : entityProcessingServices) {
-            System.out.println("EntityProcessingService: " + entityProcessingService);
-        }*/
         return entityProcessingServices;
     }
 

@@ -17,8 +17,6 @@ public class PlayerControlSystem implements IEntityProcessingService{
     public void process(GameData gameData, World world) {
 
         for (Entity player : world.getEntities(Player.class)) {
-            System.out.println("x: " + player.getX() + " y: " + player.getY());
-            
             double speed = 1;
             double dx = 0; //Change in position in x
             double dy = 0; //Change in position in y
