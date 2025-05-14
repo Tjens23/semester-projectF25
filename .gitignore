@@ -5,6 +5,8 @@ target/
 
 ### Project Specific ###
 *.jar
+!lib/*.jar
+!lib/*.so
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
