@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 public class PlayerPlugin implements IGamePluginService {
     private Entity player;
-
+    private static final double SCALE = 2;
     @Override
     public void start(GameData gameData, World world) {
         player = createPlayer(gameData);
@@ -24,8 +24,8 @@ public class PlayerPlugin implements IGamePluginService {
         ImageView playerImageView = new ImageView(playerSprite);
         playerImageView.setViewport(new Rectangle2D(0, 0, 48, 64));
         
-        playerImageView.setFitWidth(48);
-        playerImageView.setFitHeight(64);
+        playerImageView.setFitWidth(48 * SCALE);
+        playerImageView.setFitHeight(64 * SCALE);
         playerImageView.setX(gameData.getDisplayWidth() / 2);
         playerImageView.setY(gameData.getDisplayHeight() / 2);
 

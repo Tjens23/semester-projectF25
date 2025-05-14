@@ -52,10 +52,10 @@
         </executions>
         <configuration>
           <executable>java</executable>
-          <workingDirectory>.</workingDirectory>
+          <workingDirectory>>.</workingDirectory>
           <arguments>
             <argument>--module-path</argument>
-            <argument>${session.executionRootDirectory}/mods-mvn</argument>
+            <argument>lib:mods-mvn</argument>
             <argument>--add-modules</argument>
             <argument>javafx.controls,javafx.graphics</argument>
             <argument>--module</argument>
