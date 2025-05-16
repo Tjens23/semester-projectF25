@@ -1,7 +1,9 @@
 package dk.sdu.pathfinding;
 import dk.sdu.common.data.Entity;
+import dk.sdu.common.data.World;
 import dk.sdu.enemy.Component;
 import dk.sdu.enemy.Zombie;
+import dk.sdu.player.Player;
 
 import java.util.*;
 
@@ -10,7 +12,7 @@ public class PathfindingComponent implements Component {
     // Grid representation of the game world for pathfinding
     private static final int GRID_SIZE = 50; // Grid cell size
     private static final int MAX_SEARCH_NODES = 1000; // Limit search to prevent performance issues
-
+    private final World world = new World();
     @Override
     public void update(Zombie zombie) {
         Entity player = findPlayer();
@@ -28,9 +30,11 @@ public class PathfindingComponent implements Component {
     }
 
     private Entity findPlayer() {
-        // This method would need to be implemented to find the player entity
-        // In a real implementation, you would get the player from the World
-        // For now, return null as we don't have access to the World here
+        for (Entity entity : world.getEntities()) {
+            if (entity instanceof Player) {
+                return entity;
+            }
+        }
         return null;
     }
 
