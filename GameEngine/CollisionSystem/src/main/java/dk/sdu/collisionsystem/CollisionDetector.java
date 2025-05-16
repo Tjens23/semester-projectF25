@@ -16,6 +16,11 @@ public class CollisionDetector implements IPostEntityProcessingService {
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
 
+                // check if the entity is collidable
+                if (!entity1.isCollidable() || !entity2.isCollidable()) {
+                    continue;
+                }
+                
                 // if the two entities are identical, skip the iteration
                 if (entity1.getID().equals(entity2.getID())) {
                     continue;

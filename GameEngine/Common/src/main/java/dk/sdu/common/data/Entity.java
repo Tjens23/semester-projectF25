@@ -17,6 +17,15 @@ public class Entity implements Serializable {
     private double rotation;
     private float radius;
     private boolean markedForRemoval = false;
+    private boolean collidable = false;
+
+    public boolean isCollidable() {
+        return collidable;
+    }
+
+    public void setCollidable(boolean collidable) {
+        this.collidable = collidable;
+    }
 
     public String getID() {
         return ID.toString();
