@@ -12,7 +12,17 @@ public class PathfindingComponent implements Component {
     // Grid representation of the game world for pathfinding
     private static final int GRID_SIZE = 50; // Grid cell size
     private static final int MAX_SEARCH_NODES = 1000; // Limit search to prevent performance issues
-    private final World world = new World();
+    private final World world;
+
+
+    public PathfindingComponent() {
+        this.world = new World();
+    }
+
+    public PathfindingComponent(World world) {
+        this.world = world;
+    }
+
     @Override
     public void update(Zombie zombie) {
         Entity player = findPlayer();
@@ -29,7 +39,7 @@ public class PathfindingComponent implements Component {
         }
     }
 
-    private Entity findPlayer() {
+    public Entity findPlayer() {
         for (Entity entity : world.getEntities()) {
             if (entity instanceof Player) {
                 return entity;
@@ -161,20 +171,20 @@ public class PathfindingComponent implements Component {
         }
 
         // Apply movement
-        double speed = 2.0; // Adjust based on zombie speed
+        double speed = zombie.getSpeed(); // Adjust based on zombie speed
 
         // Update position using setter methods or direct position update
-        double  positionX = zombie.getX() + dx * speed;
-        double positionY = zombie.getY() + dy * speed;
+        zombie.setX(zombie.getX() + dx * speed);
+        zombie.setY(zombie.getY() + dy * speed);
 
         // Update rotation to face the direction of movement
         zombie.setRotation(Math.toDegrees(Math.atan2(dy, dx)));
 
-        System.out.println("Zombie at " + zombie.getPolygonCoordinates() + " moving towards player");
+        System.out.println("Zombie at " + zombie.getX() + " "+  zombie.getY() + " moving towards player");
     }
 
     // Node class for A* algorithm
-    private static class Node implements Comparable<Node> {
+    static class Node implements Comparable<Node> {
         int x, y;
         double fScore = 0;
 
