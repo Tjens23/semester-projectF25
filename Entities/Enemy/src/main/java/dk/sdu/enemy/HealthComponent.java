@@ -9,7 +9,7 @@ public class HealthComponent implements Component {
 
     @Override
     public void update(Zombie zombie) {
-        if (zombie.health <=0) {
+        if (zombie.getHealth() <=0) {
             System.out.println("Zombie is dead");
         }
     }
