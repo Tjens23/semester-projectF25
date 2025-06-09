@@ -8,5 +8,6 @@ module Enemy {
     provides dk.sdu.common.services.IGamePluginService
             with dk.sdu.enemy.ZombiePlugin;
     provides dk.sdu.common.services.IEntityProcessingService
-            with dk.sdu.enemy.ZombieControlSystem;
+            with dk.sdu.enemy.ZombieControlSystem,
+                 dk.sdu.enemy.ZombieSpawner;
 }

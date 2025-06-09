@@ -12,18 +12,28 @@ import javafx.scene.image.ImageView;
 import java.util.Random;
 
 public class ZombiePlugin implements IGamePluginService  {
-    private Entity zombie;
     private static final double SCALE = 0.8; // Reduced from 2 to 0.8 to make zombie smaller
     private static final int MIN_DISTANCE_FROM_PLAYER = 500;
+    private static final int INITIAL_ZOMBIE_COUNT = 3; // Number of zombies to spawn at start
+    private static final int MAX_ZOMBIES = 8; // Maximum number of zombies
+    private static final long SPAWN_INTERVAL = 15000; // Spawn new zombie every 15 seconds (in milliseconds)
+    
+    private long lastSpawnTime = 0;
+    private int currentZombieCount = 0;
 
     @Override
     public void start(GameData gameData, World world) {
-        zombie = createzombie(gameData, world);
-        world.addEntity(zombie);
+        // Spawn initial zombies
+        for (int i = 0; i < INITIAL_ZOMBIE_COUNT; i++) {
+            Entity zombie = createZombie(gameData, world, i);
+            world.addEntity(zombie);
+            currentZombieCount++;
+        }
+        lastSpawnTime = System.currentTimeMillis();
     }
 
-    private Entity createzombie(GameData gameData, World world) {
-        Zombie zombie1 = new Zombie(10, 1, "normal"); // Reduced speed from 2 to 1
+    private Entity createZombie(GameData gameData, World world, int zombieIndex) {
+        Zombie zombie = new Zombie(10, 1, "normal"); // Reduced speed from 2 to 1
 
         // Find player position
         double playerX = gameData.getDisplayWidth() / 2;
@@ -78,19 +88,23 @@ public class ZombiePlugin implements IGamePluginService  {
         zombieImageView.setFitHeight(64 * SCALE);
 
         // Set position
-        zombie1.setX(spawnX);
-        zombie1.setY(spawnY);
-        zombie1.setRadius(10); // Reduced from 15 to 10 to match smaller size
-        zombie1.setView(zombieImageView);
+        zombie.setX(spawnX);
+        zombie.setY(spawnY);
+        zombie.setRadius(10); // Reduced from 15 to 10 to match smaller size
+        zombie.setView(zombieImageView);
 
         // Add pathfinding component
-        zombie1.addComponent(new ZombiePathfindingComponent(world));
+        zombie.addComponent(new ZombiePathfindingComponent(world));
 
-        return zombie1;
+        return zombie;
     }
+    
 
     @Override
     public void stop(GameData gameData, World world) {
-        world.removeEntity(zombie);
+        // Remove all zombies
+        world.getEntities().stream()
+            .filter(entity -> entity instanceof Zombie)
+            .forEach(world::removeEntity);
     }
 }
