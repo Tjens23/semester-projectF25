@@ -37,7 +37,7 @@ public class Game {
     public void start(Stage window) throws Exception {
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         gameWindow.getChildren().add(new Text(10, 20, "Zombies killed: 0"));
-
+        gameData.setGameWindow(gameWindow);
         Scene scene = new Scene(gameWindow);
         //Track mouse position for firing bullets
         scene.setOnMouseMoved(event -> {
