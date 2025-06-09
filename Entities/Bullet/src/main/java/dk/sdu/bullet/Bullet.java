@@ -26,6 +26,6 @@ public class Bullet extends Entity {
         setRadius(DEFAULT_BULLET_SIZE * 2);
         
         // Debug print
-        System.out.println("Created new bullet with radius: " + getRadius());
+        //System.out.println("Created new bullet with radius: " + getRadius());
     }
 }

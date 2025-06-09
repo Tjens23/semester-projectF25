@@ -56,8 +56,14 @@ public class PlayerControlSystem implements IEntityProcessingService{
                 player.setY(1);
             }
 
-            // Handle shooting mechanics
             if (gameData.getKeys().isDown(GameKeys.SPACE)) {
+                // Calculate direction of bullet based on mouse position and player position
+                double bx = gameData.getMouseX() - player.getX();
+                double by = gameData.getMouseY() - player.getY();
+                double angle = Math.toDegrees(Math.atan2(by, bx));
+                player.setRotation(angle); // Set player rotation to face the mouse position to get ready for firing bullet.
+                
+                // Create bullet entity to fire.
                 getBulletSPIs().stream().findFirst().ifPresent(
                     spi -> world.addEntity(spi.createBullet(player, gameData))
                 );
