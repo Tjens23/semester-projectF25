@@ -10,7 +10,10 @@ public class HealthComponent implements Component {
     @Override
     public void update(Zombie zombie) {
         if (zombie.getHealth() <=0) {
-            System.out.println("Zombie is dead");
+            zombie.setActive(false);
+            System.out.println("Zombie is dead.");
+        } else {
+            System.out.println("Zombie health: " + zombie.getHealth() + "/" + maxhealth);
         }
     }
 }
