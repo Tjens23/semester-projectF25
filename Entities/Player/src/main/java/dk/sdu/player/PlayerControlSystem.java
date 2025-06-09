@@ -17,7 +17,7 @@ public class PlayerControlSystem implements IEntityProcessingService{
     public void process(GameData gameData, World world) {
 
         for (Entity player : world.getEntities(Player.class)) {
-            double speed = 2;
+            double speed = 1.2; // Reduced from 2 to 1.2 for better balance with slower zombie
             double dx = 0; //Change in position in x
             double dy = 0; //Change in position in y
             

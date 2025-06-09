@@ -1,6 +1,6 @@
 package dk.sdu.enemy;
 
-public class HealthComponent implements Component {
+public class HealthComponent implements ZombieComponent {
     private int maxhealth;
 
     public HealthComponent(int maxhealth){
@@ -9,9 +9,8 @@ public class HealthComponent implements Component {
 
     @Override
     public void update(Zombie zombie) {
-        if (zombie.getHealth() <=0) {
-            System.out.println("Zombie is dead");
+        if (zombie.getHealth() <= 0) {
+            zombie.setActive(false);
         }
     }
-
 }
