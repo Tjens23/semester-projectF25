@@ -1,8 +1,7 @@
 package dk.sdu.pathfinding;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.World;
-import dk.sdu.enemy.Component;
-import dk.sdu.enemy.Zombie;
+import dk.sdu.common.components.Component;
 import dk.sdu.player.Player;
 
 import java.util.*;
@@ -24,18 +23,26 @@ public class PathfindingComponent implements Component {
     }
 
     @Override
-    public void update(Zombie zombie) {
+    public void update(Entity entity) {
+        System.out.println("PathfindingComponent.update called for entity at (" + entity.getX() + ", " + entity.getY() + ")");
+        
         Entity player = findPlayer();
-        if (player == null) return;
+        if (player == null) {
+            System.out.println("No player found in world with " + world.getEntities().size() + " entities");
+            return;
+        }
+        
+        System.out.println("Player found at (" + player.getX() + ", " + player.getY() + ")");
 
-        List<Node> path = findPathToPlayer(zombie, player);
-
+        List<Node> path = findPathToPlayer(entity, player);
+        
         if (path != null && !path.isEmpty()) {
+            System.out.println("Path found with " + path.size() + " nodes");
             // Get the next node in the path
             Node nextNode = path.get(0);
 
-            // Move zombie towards the next node
-            moveTowardsTarget(zombie, nextNode.x, nextNode.y);
+            // Move entity towards the next node
+            moveTowardsTarget(entity, nextNode.x, nextNode.y);
         }
     }
 
@@ -48,10 +55,10 @@ public class PathfindingComponent implements Component {
         return null;
     }
 
-    private List<Node> findPathToPlayer(Zombie zombie, Entity player) {
+    private List<Node> findPathToPlayer(Entity entity, Entity player) {
         // Starting and target positions
-        int startX = (int) (zombie.getX() / GRID_SIZE);
-        int startY = (int) (zombie.getY() / GRID_SIZE);
+        int startX = (int) (entity.getX() / GRID_SIZE);
+        int startY = (int) (entity.getY() / GRID_SIZE);
         int targetX = (int) (player.getX() / GRID_SIZE);
         int targetY = (int) (player.getY() / GRID_SIZE);
 
@@ -154,14 +161,14 @@ public class PathfindingComponent implements Component {
 
 
 
-    private void moveTowardsTarget(Zombie zombie, int gridX, int gridY) {
+    private void moveTowardsTarget(Entity entity, int gridX, int gridY) {
         // Convert grid coordinates back to game world coordinates
         double targetX = gridX * GRID_SIZE + GRID_SIZE / 2;
         double targetY = gridY * GRID_SIZE + GRID_SIZE / 2;
 
         // Calculate direction vector
-        double dx = targetX - zombie.getX();
-        double dy = targetY - zombie.getY();
+        double dx = targetX - entity.getX();
+        double dy = targetY - entity.getY();
 
         // Normalize the direction vector
         double length = Math.sqrt(dx * dx + dy * dy);
@@ -170,17 +177,15 @@ public class PathfindingComponent implements Component {
             dy /= length;
         }
 
-        // Apply movement
-        double speed = zombie.getSpeed(); // Adjust based on zombie speed
+        // Apply movement - use a default speed since Entity doesn't have getSpeed()
+        double speed = 2.0; // Default movement speed
 
-        // Update position using setter methods or direct position update
-        zombie.setX(zombie.getX() + dx * speed);
-        zombie.setY(zombie.getY() + dy * speed);
+        // Update position using setter methods
+        entity.setX(entity.getX() + dx * speed);
+        entity.setY(entity.getY() + dy * speed);
 
         // Update rotation to face the direction of movement
-        zombie.setRotation(Math.toDegrees(Math.atan2(dy, dx)));
-
-        System.out.println("Zombie at " + zombie.getX() + " "+  zombie.getY() + " moving towards player");
+        entity.setRotation(Math.toDegrees(Math.atan2(dy, dx)));
     }
 
     // Node class for A* algorithm

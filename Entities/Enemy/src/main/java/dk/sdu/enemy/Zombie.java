@@ -16,13 +16,13 @@ public class Zombie extends Entity {
     private int health;
     private int speed;
     private  String size;
-    private final List<Component> components = new ArrayList<>();
+    private final List<ZombieComponent> components = new ArrayList<>();
 
-    public void addComponent(Component component){
+    public void addComponent(ZombieComponent component){
         components.add(component);
     }
     public void update(){
-        for(Component component : components){
+        for(ZombieComponent component : components){
             component.update(this);
         }
     }
@@ -59,7 +59,7 @@ public class Zombie extends Entity {
 
 
 
-    public List<Component> getComponents() {
+    public List<ZombieComponent> getComponents() {
         return this.components;
     }
     public boolean isActive() {

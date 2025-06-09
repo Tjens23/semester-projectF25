@@ -2,7 +2,7 @@ package dk.sdu.enemy;
 
 import java.util.Random;
 
-public class SpawnComponent implements Component {
+public class SpawnComponent implements ZombieComponent {
     private final String spawnType;
     private final Random random = new Random();
 

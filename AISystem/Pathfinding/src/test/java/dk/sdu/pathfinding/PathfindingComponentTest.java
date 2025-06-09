@@ -2,7 +2,6 @@ package dk.sdu.pathfinding;
 
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.World;
-import dk.sdu.enemy.Zombie;
 import dk.sdu.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,14 +19,14 @@ class PathfindingComponentTest {
     private PathfindingComponent pathfinder = new PathfindingComponent();
     private World mockWorld;
     private Player mockPlayer;
-    private Zombie mockZombie;
+    private Entity mockEntity;
 
     @BeforeEach
     void setUp() throws Exception {
         // Set up mocks
         mockWorld = mock(World.class);
         mockPlayer = mock(Player.class);
-        mockZombie = mock(Zombie.class);
+        mockEntity = mock(Entity.class);
 
         // Create component
         pathfinder = new PathfindingComponent();
@@ -41,8 +40,8 @@ class PathfindingComponentTest {
         when(mockPlayer.getX()).thenReturn(300.0);
         when(mockPlayer.getY()).thenReturn(400.0);
 
-        when(mockZombie.getX()).thenReturn(100.0);
-        when(mockZombie.getY()).thenReturn(200.0);
+        when(mockEntity.getX()).thenReturn(100.0);
+        when(mockEntity.getY()).thenReturn(200.0);
 
         List<Entity> entities = new ArrayList<>();
         entities.add(mockPlayer);
@@ -73,10 +72,10 @@ class PathfindingComponentTest {
     @Test
     void testUpdate() {
         // Test the update method
-        pathfinder.update(mockZombie);
+        pathfinder.update(mockEntity);
 
-        // Verify zombie position/rotation was updated
-        verify(mockZombie).setRotation(anyDouble());
+        // Verify entity position/rotation was updated
+        verify(mockEntity).setRotation(anyDouble());
     }
 
     @Test
@@ -84,21 +83,21 @@ class PathfindingComponentTest {
         // Setup world with no player
         when(mockWorld.getEntities()).thenReturn(new ArrayList<>());
 
-        pathfinder.update(mockZombie);
+        pathfinder.update(mockEntity);
 
-        // Zombie should not be updated
-        verify(mockZombie, never()).setRotation(anyDouble());
+        // Entity should not be updated
+        verify(mockEntity, never()).setRotation(anyDouble());
     }
 
     @Test
     void testFindPathToPlayer() throws Exception {
         Method findPathMethod = PathfindingComponent.class.getDeclaredMethod(
-            "findPathToPlayer", Zombie.class, Entity.class);
+            "findPathToPlayer", Entity.class, Entity.class);
         findPathMethod.setAccessible(true);
 
         @SuppressWarnings("unchecked")
         List<PathfindingComponent.Node> path =
-            (List<PathfindingComponent.Node>) findPathMethod.invoke(pathfinder, mockZombie, mockPlayer);
+            (List<PathfindingComponent.Node>) findPathMethod.invoke(pathfinder, mockEntity, mockPlayer);
 
         // Should find a path
         assertNotNull(path);
@@ -108,14 +107,14 @@ class PathfindingComponentTest {
     @Test
     void testMoveTowardsTarget() throws Exception {
         Method moveMethod = PathfindingComponent.class.getDeclaredMethod(
-            "moveTowardsTarget", Zombie.class, int.class, int.class);
+            "moveTowardsTarget", Entity.class, int.class, int.class);
         moveMethod.setAccessible(true);
 
         // Call moveTowardsTarget
-        moveMethod.invoke(pathfinder, mockZombie, 10, 10);
+        moveMethod.invoke(pathfinder, mockEntity, 10, 10);
 
         // Verify rotation updated
-        verify(mockZombie).setRotation(anyDouble());
+        verify(mockEntity).setRotation(anyDouble());
     }
 
     @Test

@@ -1,6 +1,6 @@
 package dk.sdu.enemy;
 
-public class HealthComponent implements Component {
+public class HealthComponent implements ZombieComponent {
     private int maxhealth;
 
     public HealthComponent(int maxhealth){

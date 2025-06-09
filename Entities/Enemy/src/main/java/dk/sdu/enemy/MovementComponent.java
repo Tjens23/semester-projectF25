@@ -1,6 +1,6 @@
 package dk.sdu.enemy;
 
-public class MovementComponent implements Component {
+public class MovementComponent implements ZombieComponent {
 
     @Override
     public void update(Zombie zombie) {
