@@ -52,10 +52,10 @@
         </executions>
         <configuration>
           <executable>java</executable>
-          <workingDirectory>.</workingDirectory>
+          <workingDirectory>>.</workingDirectory>
           <arguments>
             <argument>--module-path</argument>
-            <argument>${session.executionRootDirectory}/mods-mvn</argument>
+            <argument>lib:mods-mvn</argument>
             <argument>--add-modules</argument>
             <argument>javafx.controls,javafx.graphics</argument>
             <argument>--module</argument>
@@ -119,18 +119,6 @@
                       <version>${project.version}</version>
                       <type>jar</type>
                     </artifactItem>
-                  </artifactItems>
-                  <outputDirectory>${project.basedir}/../mods-mvn</outputDirectory>
-                </configuration>
-              </execution>
-              <execution>
-                <id>copy-javafx</id>
-                <phase>install</phase>
-                <goals>
-                  <goal>copy</goal>
-                </goals>
-                <configuration>
-                  <artifactItems>
                     <artifactItem>
                       <groupId>org.openjfx</groupId>
                       <artifactId>javafx-controls</artifactId>
@@ -143,10 +131,46 @@
                       <version>21.0.2</version>
                       <type>jar</type>
                     </artifactItem>
-                  </artifactItems>
-                  <outputDirectory>${project.basedir}/../mods-mvn</outputDirectory>
-                </configuration>
-              </execution>
+                    <artifactItem>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-context</artifactId>
+                      <version>6.2.6</version> 
+                      <type>jar</type>
+                  </artifactItem>
+                  <artifactItem>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-core</artifactId>
+                      <version>6.2.6</version>
+                      <type>jar</type>
+                  </artifactItem>
+                  <artifactItem>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-beans</artifactId>
+                      <version>6.2.6</version> 
+                      <type>jar</type>
+                  </artifactItem>
+                  <artifactItem>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-aop</artifactId>
+                      <version>6.2.6</version> 
+                      <type>jar</type>
+                  </artifactItem>
+                  <artifactItem>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-expression</artifactId>
+                      <version>6.2.6</version> 
+                      <type>jar</type>
+                  </artifactItem>
+                  <artifactItem>
+                      <groupId>org.springframework</groupId>
+                      <artifactId>spring-jcl</artifactId>
+                      <version>6.2.6</version> 
+                      <type>jar</type>
+                  </artifactItem>
+                </artifactItems>
+                <outputDirectory>${project.basedir}/../mods-mvn</outputDirectory>
+              </configuration>
+            </execution>
             </executions>
           </plugin>
         </plugins>
@@ -154,11 +178,11 @@
     </profile>
   </profiles>
   <modules>
-    <module>GameEngine</module>
+    <module>ShopSystem</module>
     <module>Entities</module>
     <module>AISystem</module>
-    <module>ShopSystem</module>
     <module>ScoringAndProgression</module>
+    <module>GameEngine</module>
   </modules>
 </project>
 

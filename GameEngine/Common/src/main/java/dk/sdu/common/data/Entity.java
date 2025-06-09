@@ -5,27 +5,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javafx.scene.image.ImageView;
+
 public class Entity implements Serializable {
     private final Map<Class<?>, Object> components = new HashMap<>();
     private final UUID ID = UUID.randomUUID();
     private String tag;
-    private double[] polygonCoordinates;
+    private ImageView entityImage;
     private double x;
     private double y;
     private double rotation;
     private float radius;
     private boolean markedForRemoval = false;
+    private boolean collidable = false;
+
+    public boolean isCollidable() {
+        return collidable;
+    }
+
+    public void setCollidable(boolean collidable) {
+        this.collidable = collidable;
+    }
 
     public String getID() {
         return ID.toString();
-    }
-
-    public void setPolygonCoordinates(double... coordinates) {
-        this.polygonCoordinates = coordinates;
-    }
-
-    public double[] getPolygonCoordinates() {
-        return polygonCoordinates;
     }
 
     public void setX(double x) {
@@ -95,5 +98,13 @@ public class Entity implements Serializable {
 
     public boolean isMarkedForRemoval() {
         return markedForRemoval;
+    }
+
+    public void setView(ImageView entityImage) {
+        this.entityImage = entityImage;
+    }
+
+    public ImageView getView() {
+        return entityImage;
     }
 }

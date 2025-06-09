@@ -15,6 +15,7 @@ public class GameKeys {
     public static final int LEFT_CLICK = 6; // MouseButton.PRIMARY
     public static final int RIGHT_CLICK = 7;// MouseButton.SECONDARY
     public static final int ESC = 8;        // KeyCode.ESCAPE
+    public static final int SHOP = 9;       // KeyCode.P
 
     public GameKeys() {
         keys = new boolean[NUM_KEYS];
