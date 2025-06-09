@@ -1,9 +1,12 @@
 package dk.sdu.player;
+import dk.sdu.common.SPI.PlayerSPI;
 import dk.sdu.common.data.Entity;
+import dk.sdu.common.data.GameData;
+import dk.sdu.common.data.World;
 import dk.sdu.currency.CurrencySystem;
 import dk.sdu.inventory.Inventory;
 
-public class Player extends Entity {
+public class Player extends Entity implements PlayerSPI {
     private String name;
     private int health;
     private Inventory inventory = new Inventory();
@@ -39,4 +42,10 @@ public class Player extends Entity {
         return this.currencySystem;
     }
 
+    @Override
+    public Entity getPlayer(GameData gameData, World world) {
+        return world.getEntities(Player.class).stream()
+                .findFirst()
+                .orElse(null);
+    }
 }

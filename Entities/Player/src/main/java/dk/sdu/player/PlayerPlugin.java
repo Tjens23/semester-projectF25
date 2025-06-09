@@ -1,6 +1,5 @@
 package dk.sdu.player;
 
-import dk.sdu.bullet.Bullet;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;

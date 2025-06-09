@@ -1,4 +1,4 @@
-package dk.sdu.bullet;
+package dk.sdu.common.SPI;
 
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
