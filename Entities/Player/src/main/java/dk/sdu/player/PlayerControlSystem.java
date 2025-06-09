@@ -13,6 +13,9 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.services.IEntityProcessingService;
 
 public class PlayerControlSystem implements IEntityProcessingService{
+    private long lastFiringTime = 0;
+    private static final long FIRE_COOLDOWN = 200;
+
     @Override
     public void process(GameData gameData, World world) {
 
@@ -55,8 +58,11 @@ public class PlayerControlSystem implements IEntityProcessingService{
             if (player.getY() < 0) {
                 player.setY(1);
             }
-
-            if (gameData.getKeys().isDown(GameKeys.SPACE)) {
+            
+            long currentTime = System.currentTimeMillis(); 
+            if (gameData.getKeys().isDown(GameKeys.SPACE) && currentTime - lastFiringTime > FIRE_COOLDOWN) {
+                lastFiringTime = currentTime;
+                
                 // Calculate direction of bullet based on mouse position and player position
                 double bx = gameData.getMouseX() - player.getX();
                 double by = gameData.getMouseY() - player.getY();
