@@ -17,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 public class Game {
     private final GameData gameData = new GameData();
     private final World world = new World();
@@ -49,8 +48,14 @@ public class Game {
         
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         gameWindow.getChildren().add(new Text(10, 20, "Zombies killed: 0"));
-
+        gameData.setGameWindow(gameWindow);
         Scene scene = new Scene(gameWindow);
+        //Track mouse position for firing bullets
+        scene.setOnMouseMoved(event -> {
+            gameData.setMouseX(event.getX());
+            gameData.setMouseY(event.getY());
+        });
+
         scene.setOnKeyPressed(event -> {
             if (event.getCode().equals(KeyCode.W)) {
                 gameData.getKeys().setKey(GameKeys.UP, true);
@@ -188,7 +193,7 @@ public class Game {
                 }
             }
 
-            if (view != null) {
+            if (view != null /*&& !(entity instanceof Player)*/) {
                 view.setX(entity.getX());
                 view.setY(entity.getY());
                 view.setRotate(entity.getRotation());
