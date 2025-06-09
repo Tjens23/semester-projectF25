@@ -1,5 +1,6 @@
 package dk.sdu.collisionsystem;
 
+import dk.sdu.bullet.Bullet;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.services.IPostEntityProcessingService;
@@ -16,7 +17,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
         if (gameData.isGameOver()) {
             return;
         }
-        
+
         // two for loops for all entities in the world
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
@@ -25,7 +26,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
                 if (!entity1.isCollidable() || !entity2.isCollidable()) {
                     continue;
                 }
-                
+
                 // if the two entities are identical, skip the iteration
                 if (entity1.getID().equals(entity2.getID())) {
                     continue;
@@ -33,19 +34,22 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
                 // CollisionDetection
                 if (this.collides(entity1, entity2)) {
-                    // Check for player-zombie collision using tags
+                    // Check for player-zombie collision
                     if (isPlayerZombieCollision(entity1, entity2)) {
                         handlePlayerZombieCollision(gameData, world, entity1, entity2);
                         return; // Stop processing after game over
-                    } else {
-                        // Handle other collisions (bullets, items, etc.)
-                        world.removeEntity(entity1);
-                        world.removeEntity(entity2);
+                    }
+                    // Check for bullet-zombie collision
+                    else if (isBulletZombieCollision(entity1, entity2)) {
+                        handleBulletZombieCollision(world, entity1, entity2);
+                    }
+                    // Handle other collisions if needed
+                    else {
+                        // This might need to be updated based on other collision types
                     }
                 }
             }
         }
-
     }
     
     private boolean isPlayerZombieCollision(Entity entity1, Entity entity2) {
@@ -76,6 +80,50 @@ public class CollisionDetector implements IPostEntityProcessingService {
             
             // Trigger game over
             gameData.setGameOver(true, "You were caught by a zombie!");
+        }
+    }
+
+    private boolean isBulletZombieCollision(Entity entity1, Entity entity2) {
+        String tag1 = entity1.getTag();
+        String tag2 = entity2.getTag();
+
+        if (tag1 == null || tag2 == null) {
+            return false;
+        }
+
+        return (entity1 instanceof Bullet && "ZOMBIE".equalsIgnoreCase(tag2)) ||
+               (entity2 instanceof Bullet && "ZOMBIE".equalsIgnoreCase(tag1));
+    }
+
+    private void handleBulletZombieCollision(World world, Entity entity1, Entity entity2) {
+        // Find which entity is the zombie and which is the bullet
+        Entity zombie;
+        Entity bullet;
+
+        if ("ZOMBIE".equalsIgnoreCase(entity1.getTag())) {
+            zombie = entity1;
+            bullet = entity2;
+        } else {
+            zombie = entity2;
+            bullet = entity1;
+        }
+
+        // Decrease zombie health
+        int currentHealth = zombie.getHealth();
+        System.out.println("[COLLISION] Bullet hit zombie! Current health: " + currentHealth);
+        
+        zombie.setHealth(currentHealth - 1);
+        int newHealth = zombie.getHealth();
+        System.out.println("[COLLISION] Zombie health decreased to: " + newHealth);
+
+        // Remove the bullet
+        world.removeEntity(bullet);
+        System.out.println("[COLLISION] Bullet removed from world");
+
+        // Check if zombie is dead
+        if (zombie.getHealth() <= 0) {
+            world.removeEntity(zombie);
+            System.out.println("[COLLISION] Zombie eliminated! Health reached 0, removing from world");
         }
     }
 
