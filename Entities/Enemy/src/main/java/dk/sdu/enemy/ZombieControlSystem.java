@@ -16,7 +16,6 @@ public class ZombieControlSystem implements IEntityProcessingService {
         for (Entity entity : world.getEntities(Zombie.class)) {
             if (entity instanceof Zombie) {
                 Zombie zombie = (Zombie) entity;
-                System.out.println("ZombieControlSystem: Updating zombie at (" + zombie.getX() + ", " + zombie.getY() + ") with " + zombie.getComponents().size() + " components");
                 // Call the zombie's update method which will update all its components
                 zombie.update();
             }

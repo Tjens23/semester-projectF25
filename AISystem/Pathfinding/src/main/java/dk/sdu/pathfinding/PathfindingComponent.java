@@ -24,20 +24,14 @@ public class PathfindingComponent implements Component {
 
     @Override
     public void update(Entity entity) {
-        System.out.println("PathfindingComponent.update called for entity at (" + entity.getX() + ", " + entity.getY() + ")");
-        
         Entity player = findPlayer();
         if (player == null) {
-            System.out.println("No player found in world with " + world.getEntities().size() + " entities");
             return;
         }
-        
-        System.out.println("Player found at (" + player.getX() + ", " + player.getY() + ")");
 
         List<Node> path = findPathToPlayer(entity, player);
         
         if (path != null && !path.isEmpty()) {
-            System.out.println("Path found with " + path.size() + " nodes");
             // Get the next node in the path
             Node nextNode = path.get(0);
 
@@ -178,7 +172,7 @@ public class PathfindingComponent implements Component {
         }
 
         // Apply movement - use a default speed since Entity doesn't have getSpeed()
-        double speed = 2.0; // Default movement speed
+        double speed = 0.8; // Reduced speed to make zombies slower
 
         // Update position using setter methods
         entity.setX(entity.getX() + dx * speed);

@@ -17,8 +17,5 @@ public class MovementComponent implements ZombieComponent {
         // Apply movement
         zombie.setX(x + dx * speed);
         zombie.setY(y + dy * speed);
-
-        System.out.println("Zombie moves with speed: " + zombie.getSpeed() + " and size: " + zombie.getSize());
-        System.out.println("Position updated to: (" + zombie.getX() + ", " + zombie.getY() + ")");
     }
 }

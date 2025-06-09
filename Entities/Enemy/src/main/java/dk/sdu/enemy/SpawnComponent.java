@@ -39,7 +39,6 @@ public class SpawnComponent implements ZombieComponent {
 
         // After spawning, mark the zombie as active
         zombie.setActive(true);
-        System.out.println("Spawned a zombie of type: " + spawnType);
     }
 
     private void spawnRandomly(Zombie zombie) {

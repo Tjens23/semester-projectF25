@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class ZombiePlugin implements IGamePluginService  {
     private Entity zombie;
-    private static final double SCALE = 2;
+    private static final double SCALE = 0.8; // Reduced from 2 to 0.8 to make zombie smaller
     private static final int MIN_DISTANCE_FROM_PLAYER = 500;
 
     @Override
@@ -23,7 +23,7 @@ public class ZombiePlugin implements IGamePluginService  {
     }
 
     private Entity createzombie(GameData gameData, World world) {
-        Zombie zombie1 = new Zombie(10, 2, "normal");
+        Zombie zombie1 = new Zombie(10, 1, "normal"); // Reduced speed from 2 to 1
 
         // Find player position
         double playerX = gameData.getDisplayWidth() / 2;
@@ -80,7 +80,7 @@ public class ZombiePlugin implements IGamePluginService  {
         // Set position
         zombie1.setX(spawnX);
         zombie1.setY(spawnY);
-        zombie1.setRadius(15);
+        zombie1.setRadius(10); // Reduced from 15 to 10 to match smaller size
         zombie1.setView(zombieImageView);
 
         // Add pathfinding component
