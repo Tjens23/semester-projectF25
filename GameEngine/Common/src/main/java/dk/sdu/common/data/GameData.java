@@ -7,6 +7,8 @@ public class GameData {
     private int displayWidth  = 1280 ;
     private int displayHeight = 720;
     private final GameKeys keys = new GameKeys();
+    private boolean gameOver = false;
+    private String gameOverReason = "";
 
     public GameKeys getKeys() {
         return keys;
@@ -27,7 +29,23 @@ public class GameData {
     public int getDisplayHeight() {
         return displayHeight;
     }
-
+    
+    public boolean isGameOver() {
+        return gameOver;
+    }
+    
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
+    }
+    
+    public void setGameOver(boolean gameOver, String reason) {
+        this.gameOver = gameOver;
+        this.gameOverReason = reason;
+    }
+    
+    public String getGameOverReason() {
+        return gameOverReason;
+    }
 
 }
 

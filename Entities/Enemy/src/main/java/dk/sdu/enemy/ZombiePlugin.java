@@ -52,25 +52,29 @@ public class ZombiePlugin implements IGamePluginService  {
         double spawnX, spawnY;
         double distance;
 
+        // Ensure display dimensions are valid to avoid IllegalArgumentException
+        int displayWidth = Math.max(1, gameData.getDisplayWidth());
+        int displayHeight = Math.max(1, gameData.getDisplayHeight());
+        
         do {
             // Generate point on edge of screen
             int side = random.nextInt(4); // 0: top, 1: right, 2: bottom, 3: left
             switch (side) {
                 case 0: // top
-                    spawnX = random.nextInt(gameData.getDisplayWidth());
+                    spawnX = random.nextInt(displayWidth);
                     spawnY = 0;
                     break;
                 case 1: // right
-                    spawnX = gameData.getDisplayWidth();
-                    spawnY = random.nextInt(gameData.getDisplayHeight());
+                    spawnX = displayWidth;
+                    spawnY = random.nextInt(displayHeight);
                     break;
                 case 2: // bottom
-                    spawnX = random.nextInt(gameData.getDisplayWidth());
-                    spawnY = gameData.getDisplayHeight();
+                    spawnX = random.nextInt(displayWidth);
+                    spawnY = displayHeight;
                     break;
                 default: // left
                     spawnX = 0;
-                    spawnY = random.nextInt(gameData.getDisplayHeight());
+                    spawnY = random.nextInt(displayHeight);
                     break;
             }
 
@@ -91,6 +95,8 @@ public class ZombiePlugin implements IGamePluginService  {
         zombie.setX(spawnX);
         zombie.setY(spawnY);
         zombie.setRadius(10); // Reduced from 15 to 10 to match smaller size
+        zombie.setCollidable(true); // Make zombie collidable
+        zombie.setTag("ZOMBIE"); // Set zombie tag for collision detection
         zombie.setView(zombieImageView);
 
         // Add pathfinding component
