@@ -126,6 +126,9 @@ public class ZombieSpawner implements IEntityProcessingService {
 
             // Add pathfinding component
             zombie.addComponent(new ZombiePathfindingComponent(world));
+            
+            // Add health bar component
+            zombie.addComponent(new HealthBarComponent(gameData.getGameWindow()));
 
             return zombie;
         } catch (Exception e) {

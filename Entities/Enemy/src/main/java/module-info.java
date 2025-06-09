@@ -10,4 +10,6 @@ module Enemy {
     provides dk.sdu.common.services.IEntityProcessingService
             with dk.sdu.enemy.ZombieControlSystem,
                  dk.sdu.enemy.ZombieSpawner;
+    provides dk.sdu.common.services.IPostEntityProcessingService
+            with dk.sdu.enemy.EntityCleanupService;
 }

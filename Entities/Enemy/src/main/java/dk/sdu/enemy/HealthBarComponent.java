@@ -64,9 +64,25 @@ public class HealthBarComponent implements ZombieComponent {
         int maxHealth = 10; // Assuming max health is 10 based on zombie creation
         double healthPercentage = Math.max(0, Math.min(1, (double) currentHealth / maxHealth));
         
+        // Hide health bar if zombie is dead or marked for removal
+        boolean shouldShowHealthBar = currentHealth > 0 && !zombie.isMarkedForRemoval();
+        
+        if (!shouldShowHealthBar) {
+            healthBarBackground.setVisible(false);
+            healthBarForeground.setVisible(false);
+            return;
+        }
+        
         // Position health bar below zombie
         double zombieX = zombie.getX();
         double zombieY = zombie.getY();
+        
+        // Ensure zombie view exists before calculating position
+        if (zombie.getView() == null) {
+            healthBarBackground.setVisible(false);
+            healthBarForeground.setVisible(false);
+            return;
+        }
         
         // Center the health bar horizontally relative to zombie
         double healthBarX = zombieX + (zombie.getView().getFitWidth() / 2) - (HEALTH_BAR_WIDTH / 2);
@@ -75,11 +91,13 @@ public class HealthBarComponent implements ZombieComponent {
         // Update background position
         healthBarBackground.setX(healthBarX);
         healthBarBackground.setY(healthBarY);
+        healthBarBackground.setVisible(true);
         
         // Update foreground position and width based on health percentage
         healthBarForeground.setX(healthBarX);
         healthBarForeground.setY(healthBarY);
         healthBarForeground.setWidth(HEALTH_BAR_WIDTH * healthPercentage);
+        healthBarForeground.setVisible(true);
         
         // Change color based on health level
         if (healthPercentage <= LOW_HEALTH_THRESHOLD) {
@@ -87,11 +105,6 @@ public class HealthBarComponent implements ZombieComponent {
         } else {
             healthBarForeground.setFill(FOREGROUND_COLOR);
         }
-        
-        // Hide health bar if zombie is dead
-        boolean isVisible = currentHealth > 0;
-        healthBarBackground.setVisible(isVisible);
-        healthBarForeground.setVisible(isVisible);
     }
     
     /**
