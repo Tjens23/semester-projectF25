@@ -47,5 +47,6 @@ public class Player extends Entity implements PlayerSPI {
         return world.getEntities(Player.class).stream()
                 .findFirst()
                 .orElse(null);
+        
     }
 }

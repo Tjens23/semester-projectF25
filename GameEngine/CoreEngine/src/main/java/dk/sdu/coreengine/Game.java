@@ -212,10 +212,12 @@ public class Game {
         // Bring player to front
         Entity player = null;
         for (PlayerSPI spi : getPlayerSPI()) {
+            System.out.println("Checking PlayerSPI: " + spi.getClass().getName());
             player = spi.getPlayer(gameData, world);
             if (player != null) break;
         }
         if (player != null) {
+            System.out.println("Player found: " + player);
             ImageView playerView = entities.get(player);
             if (playerView != null) {
                 playerView.toFront();
