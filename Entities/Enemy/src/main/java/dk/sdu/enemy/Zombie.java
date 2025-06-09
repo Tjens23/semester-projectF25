@@ -62,6 +62,17 @@ public class Zombie extends Entity {
     public List<Component> getComponents() {
         return this.components;
     }
+    public boolean isActive() {
+        return this.health > 0;
+    }
+
+    public void setActive(boolean active) {
+        if (active) {
+            this.health = 100;
+        } else {
+            this.health = 0;
+        }
+    }
 }
 
 

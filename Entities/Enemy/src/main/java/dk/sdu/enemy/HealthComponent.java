@@ -13,5 +13,4 @@ public class HealthComponent implements Component {
             System.out.println("Zombie is dead");
         }
     }
-
 }
