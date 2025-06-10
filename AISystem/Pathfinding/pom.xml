@@ -11,8 +11,47 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>Pathfinding</name>
+  <dependencies>
+    <dependency>
+      <groupId>dk.sdu.common</groupId>
+      <artifactId>Common</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>dk.sdu.player</groupId>
+      <artifactId>Player</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.9.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.8.0</version>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
   <build>
   <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>3.2.5</version>
+      <configuration>
+        <useModulePath>false</useModulePath>
+        <argLine>
+          --add-opens java.base/java.lang=ALL-UNNAMED
+          --add-opens dk.sdu.pathfinding/dk.sdu.pathfinding=ALL-UNNAMED
+          --add-reads dk.sdu.pathfinding=ALL-UNNAMED
+        </argLine>
+      </configuration>
+    </plugin>
     <plugin>
       <artifactId>maven-dependency-plugin</artifactId>
       <version>3.0.2</version>

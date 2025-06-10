@@ -13,11 +13,14 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.services.IEntityProcessingService;
 
 public class PlayerControlSystem implements IEntityProcessingService{
+    private long lastFiringTime = 0;
+    private static final long FIRE_COOLDOWN = 200;
+
     @Override
     public void process(GameData gameData, World world) {
 
         for (Entity player : world.getEntities(Player.class)) {
-            double speed = 2;
+            double speed = 1.2; // Reduced from 2 to 1.2 for better balance with slower zombie
             double dx = 0; //Change in position in x
             double dy = 0; //Change in position in y
             
@@ -55,9 +58,18 @@ public class PlayerControlSystem implements IEntityProcessingService{
             if (player.getY() < 0) {
                 player.setY(1);
             }
-
-            // Handle shooting mechanics
-            if (gameData.getKeys().isDown(GameKeys.SPACE)) {
+            
+            long currentTime = System.currentTimeMillis(); 
+            if (gameData.getKeys().isDown(GameKeys.SPACE) && currentTime - lastFiringTime > FIRE_COOLDOWN) {
+                lastFiringTime = currentTime;
+                
+                // Calculate direction of bullet based on mouse position and player position
+                double bx = gameData.getMouseX() - player.getX();
+                double by = gameData.getMouseY() - player.getY();
+                double angle = Math.toDegrees(Math.atan2(by, bx));
+                player.setRotation(angle); // Set player rotation to face the mouse position to get ready for firing bullet.
+                
+                // Create bullet entity to fire.
                 getBulletSPIs().stream().findFirst().ifPresent(
                     spi -> world.addEntity(spi.createBullet(player, gameData))
                 );
