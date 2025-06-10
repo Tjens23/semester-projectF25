@@ -32,6 +32,10 @@ public class Player extends Entity implements PlayerSPI {
     public void setHealth(int health) {
         this.health = health;
     }
+    
+    public boolean isAlive() {
+        return this.health > 0;
+    }
 
     public Inventory getInventory() {
         return inventory;

@@ -50,7 +50,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>6.2.6</version>
+            <version>6.2.7</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -128,7 +128,7 @@
                   <artifactItem>
                       <groupId>org.springframework</groupId>
                       <artifactId>spring-context</artifactId>
-                      <version>6.2.6</version> 
+                      <version>6.2.7</version> 
                       <type>jar</type>
                   </artifactItem>
                   <artifactItem>

@@ -24,8 +24,10 @@ public class Bullet extends Entity {
         
 
         setRadius(DEFAULT_BULLET_SIZE * 2);
+        setTag("BULLET"); // Set tag for collision detection
+        setCollidable(true); // Make bullet collidable
         
         // Debug print
-        //System.out.println("Created new bullet with radius: " + getRadius());
+        System.out.println("[BULLET] Created new bullet with radius: " + getRadius() + ", tag: " + getTag() + ", collidable: " + isCollidable());
     }
 }

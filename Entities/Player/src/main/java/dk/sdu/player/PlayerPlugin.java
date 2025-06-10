@@ -31,6 +31,8 @@ public class PlayerPlugin implements IGamePluginService {
         player1.setX(gameData.getDisplayWidth() / 2);
         player1.setY(gameData.getDisplayHeight() / 2);
         player1.setRadius(15);
+        player1.setCollidable(true); // Make player collidable
+        player1.setTag("PLAYER"); // Set player tag for collision detection
 
         player1.setView(playerImageView);
 

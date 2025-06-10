@@ -25,6 +25,9 @@ public class Game {
     private final World world = new World();
     private final Pane gameWindow = new Pane();
     private final Map<Entity, ImageView> entities = new ConcurrentHashMap<>();
+    private GameOverScreen gameOverScreen;
+    private Stage primaryStage;
+    private AnimationTimer gameLoop;
 
     private final List<IGamePluginService> gamePluginServices;
     private final List<IEntityProcessingService> entityProcessingServices;
@@ -44,6 +47,14 @@ public class Game {
     }
     
     public void start(Stage window) throws Exception {
+        this.primaryStage = window;
+        
+        // Initialize game over screen with callbacks
+        gameOverScreen = new GameOverScreen(
+            this::restartGame,  // Restart callback
+            this::exitGame      // Exit callback
+        );
+        
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
         gameWindow.getChildren().add(zombiesKilledCounter);
         gameWindow.getChildren().add(fpsCounter);
@@ -148,9 +159,16 @@ public class Game {
 
 
     public void render() {
-        new AnimationTimer() {
+        gameLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                // Check for game over state
+                if (gameData.isGameOver()) {
+                    this.stop(); // Stop the game loop
+                    showGameOverScreen();
+                    return;
+                }
+                
                 update();
                 draw();
                 gameData.getKeys().update();
@@ -166,7 +184,8 @@ public class Game {
                     lastFpsTime = now;
                 }
             }
-        }.start();
+        };
+        gameLoop.start();
     }
 
 
@@ -236,6 +255,74 @@ public class Game {
 
     public List<IPostEntityProcessingService> getPostEntityProcessingServices() {
         return postEntityProcessingServices;
+    }
+    
+    private void showGameOverScreen() {
+        // Run on JavaFX Application Thread to avoid threading issues
+        javafx.application.Platform.runLater(() -> {
+            if (gameOverScreen != null) {
+                gameOverScreen.show(gameData.getGameOverReason());
+            }
+        });
+    }
+    
+    private void restartGame() {
+        // Reset game state
+        gameData.setGameOver(false);
+        
+        // Ensure display dimensions are properly set
+        if (primaryStage != null) {
+            gameData.setDisplayWidth((int) primaryStage.getWidth());
+            gameData.setDisplayHeight((int) primaryStage.getHeight());
+        }
+        
+        // If dimensions are still invalid, set default values
+        if (gameData.getDisplayWidth() <= 0) {
+            gameData.setDisplayWidth(1280);
+        }
+        if (gameData.getDisplayHeight() <= 0) {
+            gameData.setDisplayHeight(720);
+        }
+        
+        // Clear all entities from world
+        for (Entity entity : world.getEntities()) {
+            world.removeEntity(entity);
+        }
+        
+        // Clear entities from game window
+        entities.clear();
+        gameWindow.getChildren().clear();
+        gameWindow.getChildren().add(new Text(10, 20, "Zombies killed: 0"));
+        
+        // Restart all game plugins
+        for (IGamePluginService plugin : gamePluginServices) {
+            plugin.start(gameData, world);
+        }
+        
+        // Add all entities back to game window
+        for (Entity entity : world.getEntities()) {
+            if (entity.getView() != null) {
+                gameWindow.getChildren().add(entity.getView());
+            }
+        }
+        
+        // Restart the game loop
+        render();
+    }
+    
+    private void exitGame() {
+        // Stop the game loop if running
+        if (gameLoop != null) {
+            gameLoop.stop();
+        }
+        
+        // Close the primary stage (exit application)
+        if (primaryStage != null) {
+            primaryStage.close();
+        }
+        
+        // Exit the JavaFX application
+        javafx.application.Platform.exit();
     }
 
     private Collection<? extends PlayerSPI> getPlayerSPI() {
