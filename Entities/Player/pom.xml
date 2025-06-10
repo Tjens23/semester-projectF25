@@ -13,35 +13,15 @@
   <name>Player</name>
   <dependencies>
     <dependency>
-      <groupId>dk.sdu.inventory</groupId>
-      <artifactId>Inventory</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <!--<dependency>
-      <groupId>dk.sdu.bullet</groupId>
-      <artifactId>Bullet</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>-->
-    <dependency>
-      <groupId>dk.sdu.currencysystem</groupId>
-      <artifactId>CurrencySystem</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
       <groupId>dk.sdu.common</groupId>
       <artifactId>Common</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>dk.sdu.item</groupId>
-      <artifactId>Item</artifactId>
-      <version>1.0-SNAPSHOT</version>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-graphics</artifactId>
+        <version>21.0.2</version>
     </dependency>
-      <dependency>
-          <groupId>org.openjfx</groupId>
-          <artifactId>javafx-graphics</artifactId>
-          <version>21.0.2</version>
-      </dependency>
   </dependencies>
   <build>
   <plugins>

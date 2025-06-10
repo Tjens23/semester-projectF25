@@ -12,7 +12,6 @@
   <name>GameEngine</name>
   <modules>
     <module>Common</module>
-    <module>GraphicsEngine</module>
     <module>Map</module>
     <module>CoreEngine</module>
     <module>CollisionSystem</module>

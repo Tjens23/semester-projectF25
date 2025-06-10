@@ -11,7 +11,6 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.GameKeys;
 import dk.sdu.common.data.World;
 import dk.sdu.common.services.IEntityProcessingService;
-import dk.sdu.player.PlayerPlugin;
 
 public class PlayerControlSystem implements IEntityProcessingService{
     private long lastFiringTime = 0;

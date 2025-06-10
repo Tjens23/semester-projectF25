@@ -2,9 +2,6 @@ import dk.sdu.common.services.IEntityProcessingService;
 import dk.sdu.common.services.IGamePluginService;
 
 module Player {
-    requires Inventory;
-    requires Item;
-    requires CurrencySystem;
     requires Common;
     requires javafx.graphics;
 

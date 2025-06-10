@@ -10,7 +10,6 @@ module CoreEngine {
     requires spring.core;
     requires spring.beans;
 
-    requires Map;
     requires Common;
     
     opens dk.sdu.coreengine to javafx.graphics, spring.core;

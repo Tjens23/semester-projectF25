@@ -1,7 +1,6 @@
 module Enemy {
     requires Common;
     requires javafx.graphics;
-    requires Player;
     requires Pathfinding;
     exports dk.sdu.enemy;
 

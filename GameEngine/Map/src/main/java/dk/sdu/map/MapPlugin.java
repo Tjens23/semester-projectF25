@@ -4,7 +4,6 @@ import dk.sdu.common.data.World;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.services.IGamePluginService;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 
 public class MapPlugin implements IGamePluginService {
     private MapRenderer mapRenderer;

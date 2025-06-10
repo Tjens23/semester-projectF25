@@ -61,6 +61,11 @@ public class PathfindingComponent implements Component {
 
     public Entity findPlayer() {
         for (Entity entity : world.getEntities()) {
+            /*if (entity.getTag() != null){
+                if (entity.getTag().equalsIgnoreCase("PLAYER")) {
+                    return entity;
+                }
+            }*/
             if (entity instanceof Player) {
                 return entity;
             }

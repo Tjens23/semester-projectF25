@@ -4,7 +4,6 @@ import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.World;
 import dk.sdu.common.services.IGamePluginService;
-import dk.sdu.player.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,7 +40,7 @@ public class ZombiePlugin implements IGamePluginService  {
         double playerY = gameData.getDisplayHeight() / 2;
 
         for (Entity entity : world.getEntities()) {
-            if (entity instanceof Player) {
+            if (entity.getTag().equalsIgnoreCase("PLAYER")) {
                 playerX = entity.getX();
                 playerY = entity.getY();
                 break;
