@@ -59,10 +59,12 @@ public class ZombieSpawner implements IEntityProcessingService {
         double playerY = gameData.getDisplayHeight() / 2.0;
 
         for (Entity entity : world.getEntities()) {
-            if (entity.getTag().equalsIgnoreCase("PLAYER")) {
-                playerX = entity.getX();
-                playerY = entity.getY();
-                break;
+            if (entity.getTag() != null){
+                if (entity.getTag().equalsIgnoreCase("PLAYER")) {
+                    playerX = entity.getX();
+                    playerY = entity.getY();
+                    break;
+                }
             }
         }
 
