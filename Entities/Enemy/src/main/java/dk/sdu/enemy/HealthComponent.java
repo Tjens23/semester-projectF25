@@ -9,8 +9,11 @@ public class HealthComponent implements ZombieComponent {
 
     @Override
     public void update(Zombie zombie) {
-        if (zombie.getHealth() <= 0) {
+        int currentHealth = zombie.getHealth();
+        if (currentHealth <= 0) {
+            System.out.println("[HEALTH COMPONENT] Zombie health is " + currentHealth + ", marking for removal");
             zombie.setActive(false);
+            zombie.markForRemoval(); // Mark for removal from world
         }
     }
 }

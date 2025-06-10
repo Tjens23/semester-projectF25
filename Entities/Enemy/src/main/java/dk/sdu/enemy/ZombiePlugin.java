@@ -101,6 +101,9 @@ public class ZombiePlugin implements IGamePluginService  {
 
         // Add pathfinding component
         zombie.addComponent(new ZombiePathfindingComponent(world));
+        
+        // Add health bar component
+        zombie.addComponent(new HealthBarComponent(gameData.getGameWindow()));
 
         return zombie;
     }

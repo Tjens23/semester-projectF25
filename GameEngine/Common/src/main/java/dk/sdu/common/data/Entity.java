@@ -18,6 +18,8 @@ public class Entity implements Serializable {
     private float radius;
     private boolean markedForRemoval = false;
     private boolean collidable = false;
+    private int health;
+
 
     public boolean isCollidable() {
         return collidable;
@@ -106,5 +108,13 @@ public class Entity implements Serializable {
 
     public ImageView getView() {
         return entityImage;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

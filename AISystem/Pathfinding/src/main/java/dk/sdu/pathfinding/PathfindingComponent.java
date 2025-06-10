@@ -9,9 +9,28 @@ import java.util.*;
 public class PathfindingComponent implements Component {
 
     // Grid representation of the game world for pathfinding
-    private static final int GRID_SIZE = 50; // Grid cell size
+    private static final int GRID_SIZE = 48; // Match map tile size (16 * 3)
     private static final int MAX_SEARCH_NODES = 1000; // Limit search to prevent performance issues
     private final World world;
+    
+    // Map layout for obstacle detection - same as in MapRenderer
+    private final int[][] mapLayout = {
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 3, 3, 3, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 3, 4, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 3, 3, 3, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 3, 3, 3, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 3, 4, 4, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 3, 3, 3, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
 
 
     public PathfindingComponent() {
@@ -56,9 +75,35 @@ public class PathfindingComponent implements Component {
         int targetX = (int) (player.getX() / GRID_SIZE);
         int targetY = (int) (player.getY() / GRID_SIZE);
 
+        // Quick validation check
+        boolean startIsObstacle = isObstacle(new Node(startX, startY));
+        boolean targetIsObstacle = isObstacle(new Node(targetX, targetY));
+        
+        // Log only when there are actual issues
+        if (startIsObstacle || targetIsObstacle) {
+            System.out.println("[PATHFINDING] Position issue - Start obstacle: " + startIsObstacle + ", Target obstacle: " + targetIsObstacle);
+        }
+
         // Create start and target nodes
         Node startNode = new Node(startX, startY);
         Node targetNode = new Node(targetX, targetY);
+        
+        // If start or target is an obstacle, try to find nearby walkable positions
+        if (startIsObstacle) {
+            startNode = findNearestWalkablePosition(startX, startY);
+            if (startNode == null) {
+                System.out.println("[PATHFINDING] No walkable position found near start");
+                return null;
+            }
+        }
+        
+        if (targetIsObstacle) {
+            targetNode = findNearestWalkablePosition(targetX, targetY);
+            if (targetNode == null) {
+                System.out.println("[PATHFINDING] No walkable position found near target");
+                return null;
+            }
+        }
 
         // Setup for A*
         PriorityQueue<Node> openSet = new PriorityQueue<>();
@@ -105,8 +150,7 @@ public class PathfindingComponent implements Component {
             }
         }
 
-        // If we get here, no path was found
-        System.out.println("No path found to player");
+        // If we get here, no path was found - this is normal if entities are far apart
         return null;
     }
 
@@ -148,9 +192,34 @@ public class PathfindingComponent implements Component {
     }
 
     private boolean isObstacle(Node node) {
-        // In a real implementation, this would check for walls, obstacles, etc.
-        // For now, return false (no obstacles)
-        return false;
+        // Check if the node position is within map bounds
+        if (node.y < 0 || node.y >= mapLayout.length || 
+            node.x < 0 || node.x >= mapLayout[node.y].length) {
+            return true; // Out of bounds is considered an obstacle
+        }
+        
+        // Tile ID 0 is walkable, everything else is an obstacle
+        return mapLayout[node.y][node.x] != 0;
+    }
+    
+    private Node findNearestWalkablePosition(int centerX, int centerY) {
+        // Search in expanding radius around the center position
+        for (int radius = 1; radius <= 5; radius++) {
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dy = -radius; dy <= radius; dy++) {
+                    // Only check positions on the border of the current radius
+                    if (Math.abs(dx) != radius && Math.abs(dy) != radius) {
+                        continue;
+                    }
+                    
+                    Node candidate = new Node(centerX + dx, centerY + dy);
+                    if (!isObstacle(candidate)) {
+                        return candidate;
+                    }
+                }
+            }
+        }
+        return null; // No walkable position found within reasonable distance
     }
 
 

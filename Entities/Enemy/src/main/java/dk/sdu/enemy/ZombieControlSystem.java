@@ -16,8 +16,17 @@ public class ZombieControlSystem implements IEntityProcessingService {
         for (Entity entity : world.getEntities(Zombie.class)) {
             if (entity instanceof Zombie) {
                 Zombie zombie = (Zombie) entity;
-                // Call the zombie's update method which will update all its components
-                zombie.update();
+                
+                // Check if zombie should be marked for removal (dead)
+                if (zombie.getHealth() <= 0 && !zombie.isMarkedForRemoval()) {
+                    zombie.markForRemoval(); // Mark for removal, cleanup will be handled by EntityCleanupService
+                    System.out.println("[ZOMBIE] Marking dead zombie for removal: " + zombie.getID());
+                }
+                
+                // Update zombie components (including health bar) if not marked for removal
+                if (!zombie.isMarkedForRemoval()) {
+                    zombie.update();
+                }
             }
         }
     }
