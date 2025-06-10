@@ -6,13 +6,13 @@ module Player {
     requires Item;
     requires CurrencySystem;
     requires Common;
-    requires Bullet;
     requires javafx.graphics;
 
     provides IGamePluginService with dk.sdu.player.PlayerPlugin;
     provides IEntityProcessingService with dk.sdu.player.PlayerControlSystem;
-
-    uses dk.sdu.bullet.BulletSPI;
+    provides dk.sdu.common.SPI.PlayerSPI with dk.sdu.player.Player;
+    
+    uses dk.sdu.common.SPI.BulletSPI;
     
     exports dk.sdu.player;
 }

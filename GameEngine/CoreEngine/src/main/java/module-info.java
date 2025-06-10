@@ -18,7 +18,7 @@ module CoreEngine {
     uses dk.sdu.common.services.IGamePluginService;
     uses dk.sdu.common.services.IEntityProcessingService;
     uses dk.sdu.common.services.IPostEntityProcessingService;
-
+    uses dk.sdu.common.SPI.PlayerSPI;
 
     exports dk.sdu.coreengine;
 }

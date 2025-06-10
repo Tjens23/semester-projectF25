@@ -1,8 +1,12 @@
 package dk.sdu.coreengine;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.concurrent.ConcurrentHashMap;
+import static java.util.stream.Collectors.toList;
 
+import dk.sdu.common.SPI.PlayerSPI;
 import dk.sdu.common.data.*;
 import dk.sdu.common.services.*;
 
@@ -12,7 +16,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.Node;
-// Removed invalid import
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -29,6 +32,12 @@ public class Game {
     private final List<IGamePluginService> gamePluginServices;
     private final List<IEntityProcessingService> entityProcessingServices;
     private final List<IPostEntityProcessingService> postEntityProcessingServices;
+
+    private final Text fpsCounter = new Text(1200, 20, "FPS: 0");
+    private final Text zombiesKilledCounter = new Text(10, 20, "Zombies killed: 0");
+    // For FPS Counter
+    private int frames = 0;
+    private long lastFpsTime = 0;
 
 
     Game(List<IGamePluginService> gamePluginServices, List<IEntityProcessingService> entityProcessingServices, List<IPostEntityProcessingService> postEntityProcessingServices) {
@@ -47,7 +56,12 @@ public class Game {
         );
         
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        gameWindow.getChildren().add(new Text(10, 20, "Zombies killed: 0"));
+        gameWindow.getChildren().add(zombiesKilledCounter);
+        gameWindow.getChildren().add(fpsCounter);
+
+        fpsCounter.setStyle("-fx-font-size: 20px; -fx-fill: green;");
+        zombiesKilledCounter.setStyle("-fx-font-size: 20px; -fx-fill: red;");
+
         gameData.setGameWindow(gameWindow);
         Scene scene = new Scene(gameWindow);
         //Track mouse position for firing bullets
@@ -130,13 +144,16 @@ public class Game {
         for (Entity entity : world.getEntities()) {
             gameWindow.getChildren().add(entity.getView());
         }
-        
+        fpsCounter.toFront();
+        zombiesKilledCounter.toFront();
+
         // Set up the stage
         window.setTitle("Zombie Destroyer Demo");
         window.setScene(scene);
         window.setResizable(false);
-        gameData.setDisplayWidth((int) window.getWidth());
-        gameData.setDisplayHeight((int) window.getHeight());
+        gameData.setDisplayWidth(/*(int) window.getWidth()^*/ gameData.getDisplayWidth());
+        gameData.setDisplayHeight(/*(int) window.getHeight()*/ gameData.getDisplayHeight());
+        
         window.show();
     }
 
@@ -155,6 +172,17 @@ public class Game {
                 update();
                 draw();
                 gameData.getKeys().update();
+
+                // FPS Counter
+                frames++;
+                if (lastFpsTime == 0) {
+                    lastFpsTime = now;
+                }
+                if (now - lastFpsTime >= 1_000_000_000) { // 1 second}
+                    fpsCounter.setText("FPS: " + frames);
+                    frames = 0;
+                    lastFpsTime = now;
+                }
             }
         };
         gameLoop.start();
@@ -197,6 +225,21 @@ public class Game {
                 view.setX(entity.getX());
                 view.setY(entity.getY());
                 view.setRotate(entity.getRotation());
+            }
+        }
+
+        // Bring player to front
+        Entity player = null;
+        for (PlayerSPI spi : getPlayerSPI()) {
+            System.out.println("Checking PlayerSPI: " + spi.getClass().getName());
+            player = spi.getPlayer(gameData, world);
+            if (player != null) break;
+        }
+        if (player != null) {
+            System.out.println("Player found: " + player);
+            ImageView playerView = entities.get(player);
+            if (playerView != null) {
+                playerView.toFront();
             }
         }
     }
@@ -280,6 +323,12 @@ public class Game {
         
         // Exit the JavaFX application
         javafx.application.Platform.exit();
+    }
+
+    private Collection<? extends PlayerSPI> getPlayerSPI() {
+        return ServiceLoader.load(PlayerSPI.class).stream()
+            .map(ServiceLoader.Provider::get)
+            .collect(toList());
     }
 
 }

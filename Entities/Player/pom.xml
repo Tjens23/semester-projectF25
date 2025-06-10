@@ -17,11 +17,11 @@
       <artifactId>Inventory</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-    <dependency>
+    <!--<dependency>
       <groupId>dk.sdu.bullet</groupId>
       <artifactId>Bullet</artifactId>
       <version>1.0-SNAPSHOT</version>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>dk.sdu.currencysystem</groupId>
       <artifactId>CurrencySystem</artifactId>

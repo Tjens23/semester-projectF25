@@ -1,8 +1,10 @@
 package dk.sdu.map;
+import dk.sdu.common.data.World;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+
 
 public class MapRenderer {
     private static final int TILE_SIZE = 16;
@@ -31,21 +33,27 @@ public class MapRenderer {
     public MapRenderer(Image tileset) {
         this.tileset = tileset;
     }
-    public void render(Pane gameWindow) {
+    public void render(World world) {
         for (int y = 0; y < mapLayout.length; y++) {
             for (int x = 0; x < mapLayout[y].length; x++) {
-                int tileId = mapLayout[y][x];
+                Tile tile = new Tile(mapLayout[y][x], TILE_SIZE * SCALE, TILE_SIZE * SCALE);
                 ImageView tileView = new ImageView(tileset);
                 // Calculate the position of the tile in the tileset
-                int tileX = (tileId % 4) * TILE_SIZE;
-                int tileY = (tileId / 4) * TILE_SIZE;
+                int tileX = (tile.getTileId() % 4) * TILE_SIZE;
+                int tileY = (tile.getTileId() / 4) * TILE_SIZE;
+
 
                 tileView.setViewport(new Rectangle2D(tileX, tileY, TILE_SIZE, TILE_SIZE));
-                tileView.setFitWidth(TILE_SIZE * SCALE);
-                tileView.setFitHeight(TILE_SIZE * SCALE);
-                tileView.setX(x * TILE_SIZE * SCALE);
-                tileView.setY(y * TILE_SIZE * SCALE);
-                gameWindow.getChildren().add(tileView);
+                tileView.setFitWidth(tile.getWidth());
+                tileView.setFitHeight(tile.getHeight());
+                tileView.setX(x * tile.getWidth());
+                tileView.setY(y * tile.getHeight());
+
+                tile.setX(x * tile.getWidth());
+                tile.setY(y * tile.getHeight());
+                tile.setView(tileView);
+                
+                world.addEntity(tile);
             }
         }
     }

@@ -7,7 +7,7 @@ module Bullet {
     provides IGamePluginService with dk.sdu.bullet.BulletPlugin;
     //provides BulletSPI with dk.sdu.bullet.BulletControlSystem;
     provides IEntityProcessingService with dk.sdu.bullet.BulletControlSystem;
-    provides dk.sdu.bullet.BulletSPI with dk.sdu.bullet.BulletControlSystem;
+    provides dk.sdu.common.SPI.BulletSPI with dk.sdu.bullet.BulletControlSystem;
     
     exports dk.sdu.bullet;
 }

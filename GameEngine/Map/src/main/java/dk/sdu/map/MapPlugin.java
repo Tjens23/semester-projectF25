@@ -14,7 +14,7 @@ public class MapPlugin implements IGamePluginService {
         Image tileset = new Image(getClass().getResource("/tileset.png").toExternalForm());
         mapRenderer = new MapRenderer(tileset);
 
-        mapRenderer.render(gameData.getGameWindow());
+        mapRenderer.render(world);
     }
 
     @Override
