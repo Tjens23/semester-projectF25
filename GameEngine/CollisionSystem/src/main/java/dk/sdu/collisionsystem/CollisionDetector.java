@@ -1,6 +1,6 @@
 package dk.sdu.collisionsystem;
 
-import dk.sdu.bullet.Bullet;
+import dk.sdu.common.SPI.BulletSPI;
 import dk.sdu.common.data.Entity;
 import dk.sdu.common.data.GameData;
 import dk.sdu.common.services.IPostEntityProcessingService;
@@ -99,8 +99,8 @@ public class CollisionDetector implements IPostEntityProcessingService {
             return false;
         }
 
-        return (entity1 instanceof Bullet && "ZOMBIE".equalsIgnoreCase(tag2)) ||
-               (entity2 instanceof Bullet && "ZOMBIE".equalsIgnoreCase(tag1));
+        return ("BULLET".equalsIgnoreCase(entity1.getTag()) && "ZOMBIE".equalsIgnoreCase(tag2)) ||
+               ("BULLET".equalsIgnoreCase(entity2.getTag()) && "ZOMBIE".equalsIgnoreCase(tag1));
     }
 
     private void handleBulletZombieCollision(World world, Entity entity1, Entity entity2) {
@@ -126,6 +126,7 @@ public class CollisionDetector implements IPostEntityProcessingService {
 
         // Remove the bullet
         world.removeEntity(bullet);
+        bullet.setView(null); 
         System.out.println("[COLLISION] Bullet removed from world");
 
         // Check if zombie is dead

@@ -221,27 +221,36 @@ public class Game {
                 }
             }
 
-            if (view != null /*&& !(entity instanceof Player)*/) {
+            if (view != null) {
                 view.setX(entity.getX());
                 view.setY(entity.getY());
-                view.setRotate(entity.getRotation());
+                if (entity.getTag() != null) {
+                    if (!(entity.getTag().equalsIgnoreCase("PLAYER"))){
+                        view.setRotate(entity.getRotation());
+                    }
+                }
             }
         }
 
-        // Bring player to front
-        Entity player = null;
+        for (Entity entity : world.getEntities()) {
+            if (entity.getTag() != null) {
+                if (entity.getTag().equalsIgnoreCase("ZOMBIE") || entity.getTag().equalsIgnoreCase("PLAYER")){
+                    entity.getView().toFront();
+                }
+            }
+        }
+
+        /*Entity player = null;
         for (PlayerSPI spi : getPlayerSPI()) {
-            System.out.println("Checking PlayerSPI: " + spi.getClass().getName());
             player = spi.getPlayer(gameData, world);
             if (player != null) break;
         }
         if (player != null) {
-            System.out.println("Player found: " + player);
             ImageView playerView = entities.get(player);
             if (playerView != null) {
                 playerView.toFront();
             }
-        }
+        }*/
     }
 
     public List<IGamePluginService> getGamePluginServices() {

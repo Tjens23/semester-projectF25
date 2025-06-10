@@ -3,10 +3,10 @@ import dk.sdu.common.services.IPostEntityProcessingService;
 module CollisionSystem {
     requires Map;
     requires Common;
-    requires Bullet;
+    //requires Bullet;
     provides IPostEntityProcessingService with dk.sdu.collisionsystem.CollisionDetector;
-  
-  exports dk.sdu.collisionsystem;
+    uses dk.sdu.common.SPI.BulletSPI;
+    exports dk.sdu.collisionsystem;
 }
 
 

@@ -10,6 +10,9 @@ import javafx.scene.image.ImageView;
 public class PlayerPlugin implements IGamePluginService {
     private Entity player;
     private static final double SCALE = 2;
+    private static final int PLAYER_SPRITE_WIDTH = 48;
+    private static final int PLAYER_SPRITE_HEIGHT = 64;
+
     @Override
     public void start(GameData gameData, World world) {
         player = createPlayer(gameData);
@@ -21,10 +24,10 @@ public class PlayerPlugin implements IGamePluginService {
 
         Image playerSprite = new Image(getClass().getResource("/idle.png").toExternalForm());
         ImageView playerImageView = new ImageView(playerSprite);
-        playerImageView.setViewport(new Rectangle2D(0, 0, 48, 64));
+        playerImageView.setViewport(new Rectangle2D(0, 0, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT));
         
-        playerImageView.setFitWidth(48 * SCALE);
-        playerImageView.setFitHeight(64 * SCALE);
+        playerImageView.setFitWidth(PLAYER_SPRITE_WIDTH * SCALE);
+        playerImageView.setFitHeight(PLAYER_SPRITE_HEIGHT * SCALE);
         playerImageView.setX(gameData.getDisplayWidth() / 2);
         playerImageView.setY(gameData.getDisplayHeight() / 2);
 

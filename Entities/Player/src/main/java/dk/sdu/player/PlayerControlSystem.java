@@ -11,11 +11,15 @@ import dk.sdu.common.data.GameData;
 import dk.sdu.common.data.GameKeys;
 import dk.sdu.common.data.World;
 import dk.sdu.common.services.IEntityProcessingService;
+import dk.sdu.player.PlayerPlugin;
 
 public class PlayerControlSystem implements IEntityProcessingService{
     private long lastFiringTime = 0;
     private static final long FIRE_COOLDOWN = 200;
-
+    private static final double SCALE = 2;
+    private static final int PLAYER_SPRITE_WIDTH = 48;
+    private static final int PLAYER_SPRITE_HEIGHT = 64;
+    
     @Override
     public void process(GameData gameData, World world) {
 
@@ -64,8 +68,8 @@ public class PlayerControlSystem implements IEntityProcessingService{
                 lastFiringTime = currentTime;
                 
                 // Calculate direction of bullet based on mouse position and player position
-                double bx = gameData.getMouseX() - player.getX();
-                double by = gameData.getMouseY() - player.getY();
+                double bx = gameData.getMouseX() - (player.getX() + PLAYER_SPRITE_WIDTH * SCALE / 2);
+                double by = gameData.getMouseY() - (player.getY() + PLAYER_SPRITE_HEIGHT * SCALE / 2);
                 double angle = Math.toDegrees(Math.atan2(by, bx));
                 player.setRotation(angle); // Set player rotation to face the mouse position to get ready for firing bullet.
                 

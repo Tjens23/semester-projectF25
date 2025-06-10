@@ -16,7 +16,7 @@ public class ZombiePlugin implements IGamePluginService  {
     private static final int MIN_DISTANCE_FROM_PLAYER = 500;
     private static final int INITIAL_ZOMBIE_COUNT = 3; // Number of zombies to spawn at start
     private static final int MAX_ZOMBIES = 8; // Maximum number of zombies
-    private static final long SPAWN_INTERVAL = 15000; // Spawn new zombie every 15 seconds (in milliseconds)
+    private static final long SPAWN_INTERVAL = 10000; // Spawn new zombie every 15 seconds (in milliseconds)
     
     private long lastSpawnTime = 0;
     private int currentZombieCount = 0;
@@ -26,6 +26,7 @@ public class ZombiePlugin implements IGamePluginService  {
         // Spawn initial zombies
         for (int i = 0; i < INITIAL_ZOMBIE_COUNT; i++) {
             Entity zombie = createZombie(gameData, world, i);
+            zombie.setRadius(40);
             world.addEntity(zombie);
             currentZombieCount++;
         }
